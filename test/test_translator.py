@@ -4,7 +4,7 @@ from src.modulosDEVS.DEVSGenerator import DEVSGenerator
 from src.modulosCDPP.HCPPGenerator import HCPPGenerator
 from src.traductor.config import ROOT_TEMPLATES
 
-class ArrayTest(unittest.TestCase):
+class FullTest(unittest.TestCase):
 
     @unittest.skip
     def test_array(self):
@@ -66,6 +66,7 @@ class ArrayTest(unittest.TestCase):
         hcpp_gen = HCPPGenerator()
         t.run_devs(devs_gen, hcpp_gen)
 
+    @unittest.skip
     def test_sir(self):
         archivo_modelos_base = './data/corridas/sir.json'
         root_templates = ROOT_TEMPLATES
