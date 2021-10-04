@@ -1,5 +1,5 @@
 from py_expression_eval import Parser
-# from src.modulosAuxiliares.SpecialFunctionFinder import SpecialFunctionFinder
+# from src.auxiliares.SpecialFunctionFinder import SpecialFunctionFinder
 
 
 class Equation:
@@ -29,7 +29,7 @@ class Equation:
 
     # Setters
     def set_variables_and_equation_and_functions(self, equation, sim_specs, dimensions):
-        from src.modulosAuxiliares.SpecialFunctionFinder import SpecialFunctionFinder
+        from src.utils.auxiliares.SpecialFunctionFinder import SpecialFunctionFinder
         finder = SpecialFunctionFinder()
 
         #parser = EquationParser.create_parser(Parsers.XMILE_FUNCTION_PARSER)#EquationParser.create_parser(Parsers.PY_EXPRESSION_EVAL_PARSER) # EquationParser.create_parser(Parsers.XMILE_FUNCTION_PARSER)

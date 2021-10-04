@@ -1,6 +1,6 @@
-from src.modulosAuxiliares.Equation import *
 from src.formalismos.xmile.Inflow import Inflow
 from src.formalismos.xmile.Outflow import Outflow
+from src.utils.auxiliares.Equation import Equation
 
 
 class Stock(object):

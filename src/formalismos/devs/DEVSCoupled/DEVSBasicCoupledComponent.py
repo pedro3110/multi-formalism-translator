@@ -7,7 +7,7 @@ from src.formalismos.devs.DEVSAtomic.DEVSFpm import DEVSFpm
 from src.formalismos.devs.DEVSAtomic.DEVSFtot import DEVSFtot
 from src.formalismos.devs.DEVSAtomic.DEVSIntegrator import DEVSIntegrator
 from src.formalismos.devs.DEVSAtomic.DEVSGraphical import DEVSGraphical
-from src.modulosAuxiliares.Equation import Equation
+from src.utils.auxiliares.Equation import Equation
 
 import logging
 

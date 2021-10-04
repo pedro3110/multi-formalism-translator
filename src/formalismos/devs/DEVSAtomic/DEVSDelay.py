@@ -1,6 +1,6 @@
 from src.formalismos.devs.DEVSPort import DEVSPort
 from src.formalismos.devs.DEVSAtomic.DEVSAtomicComponent import DEVSAtomicComponent
-from src.modulosAuxiliares.Equation import Equation
+from src.utils.auxiliares.Equation import Equation
 
 
 class DEVSDelay(DEVSAtomicComponent):

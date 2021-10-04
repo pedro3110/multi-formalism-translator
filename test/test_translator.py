@@ -1,7 +1,7 @@
 import unittest
 from src.traductor.Traductor import Traductor
-from src.formalismos.modulosDEVS.DEVSGenerator import DEVSGenerator
-from src.formalismos.modulosCDPP.HCPPGenerator import HCPPGenerator
+from src.formalismos.devs.DEVSGenerator import DEVSGenerator
+from src.formalismos.cdpp.HCPPGenerator import HCPPGenerator
 from src.traductor.config import ROOT_TEMPLATES
 
 

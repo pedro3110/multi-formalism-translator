@@ -1,5 +1,5 @@
 import random
-from src.modulosAuxiliares.map_generator import map_generator
+from src.utils.auxiliares.map_generator import map_generator
 
 
 class valfile_generator(object):

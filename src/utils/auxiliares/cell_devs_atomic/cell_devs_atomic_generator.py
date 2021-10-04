@@ -1,5 +1,5 @@
-from src.modulosAuxiliares.cell_devs_atomic.cell_devs_opinion import cell_devs_opinion
-from src.modulosAuxiliares.cell_devs_atomic.cell_devs_trafico import cell_devs_trafico
+from src.utils.auxiliares.cell_devs_atomic.cell_devs_opinion import cell_devs_opinion
+from src.utils.auxiliares.cell_devs_atomic.cell_devs_trafico import cell_devs_trafico
 
 
 class cell_devs_atomic_generator:

@@ -6,9 +6,9 @@ from src.formalismos.devs import CellDEVSGenerator
 from src.formalismos.cdpp import CdppModel
 from src.formalismos.cdpp import CdppModelToMaConverter
 from src.formalismos.cdpp.preprocessing import preprocessing_devsml_for_ma
-from src.modulosAuxiliares.valfile_generator import valfile_generator
+from src.utils.auxiliares import valfile_generator
 
-from src.modulosAuxiliares.cell_devs_atomic.cell_devs_atomic_generator import cell_devs_atomic_generator
+from src.utils.auxiliares.cell_devs_atomic.cell_devs_atomic_generator import cell_devs_atomic_generator
 
 
 class Traductor:

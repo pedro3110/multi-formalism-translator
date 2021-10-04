@@ -1,4 +1,4 @@
-from src.modulosAuxiliares.Equation import Equation
+from src.utils.auxiliares.Equation import Equation
 
 
 class Aux:
