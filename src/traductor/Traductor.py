@@ -2,10 +2,10 @@ import os
 import shutil
 import json
 import src.traductor.config as config
-from src.formalismos.modulosDEVS import CellDEVSGenerator
-from src.formalismos.modulosCDPP import CdppModel
-from src.formalismos.modulosCDPP import CdppModelToMaConverter
-from src.formalismos.modulosCDPP.preprocessing import preprocessing_devsml_for_ma
+from src.formalismos.devs import CellDEVSGenerator
+from src.formalismos.cdpp import CdppModel
+from src.formalismos.cdpp import CdppModelToMaConverter
+from src.formalismos.cdpp.preprocessing import preprocessing_devsml_for_ma
 from src.modulosAuxiliares.valfile_generator import valfile_generator
 
 from src.modulosAuxiliares.cell_devs_atomic.cell_devs_atomic_generator import cell_devs_atomic_generator

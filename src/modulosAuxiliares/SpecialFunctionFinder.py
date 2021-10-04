@@ -1,8 +1,8 @@
-from src.formalismos.modulosDEVS.DEVSAtomic.DEVSPulse import DEVSPulse
-from src.formalismos.modulosDEVS.DEVSAtomic.DEVSStep import DEVSStep
-from src.formalismos.modulosDEVS.DEVSAtomic.DEVSDelay import DEVSDelay
-from src.formalismos.modulosDEVS.DEVSAtomic.DEVSUniform import DEVSUniform
-from src.formalismos.modulosDEVS.DEVSAtomic.DEVSArrayAgregator import DEVSArrayAgregator
+from src.formalismos.devs.DEVSAtomic.DEVSPulse import DEVSPulse
+from src.formalismos.devs.DEVSAtomic.DEVSStep import DEVSStep
+from src.formalismos.devs.DEVSAtomic.DEVSDelay import DEVSDelay
+from src.formalismos.devs.DEVSAtomic.DEVSUniform import DEVSUniform
+from src.formalismos.devs.DEVSAtomic.DEVSArrayAgregator import DEVSArrayAgregator
 import re
 
 # TODO : hay que importar los modulos correspondientes a todas las SpecialFunctions
