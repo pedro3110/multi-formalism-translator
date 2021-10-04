@@ -54,8 +54,11 @@ class Traductor:
             self.devs_generator.generateDEVSML(DIR_XMILE, self.DEVSML_TEMPLATE_FILENAME, DEVSML_TOP_FILENAME)
 
             # Generate .ma, .ev, .cpp, .h, reg.cpp
-            self.hcpp_generator.generateHCPP(DEVSML_TOP_FILENAME, DEVSML_CPP_H_DIRECTORY,
-                                             self.CPP_H_TEMPLATES_FILENAMES, DEVSML_EVENTS_FILENAME,
+            self.hcpp_generator.generateHCPP(DEVSML_TOP_FILENAME,
+                                             DEVSML_CPP_H_DIRECTORY,
+                                             # self.ROOT_TEMPLATES,
+                                             self.CPP_H_TEMPLATES_FILENAMES,
+                                             DEVSML_EVENTS_FILENAME,
                                              DEVSML_MA_FILENAME)
 
             # TODO: Generate run.sh

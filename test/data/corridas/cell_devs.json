@@ -1,0 +1,51 @@
+{
+    "teacup": {
+        "DIR": "./data/modelos/cell/cell-teacup/",
+        "DIR_XMILE": "./data/modelos/cell/cell-teacup/teacup.xmile",
+        "DEVSML_CPP_H_DIRECTORY": "./data/modelos/cell/cell-teacup/atomics/",
+        "DEVSML_EVENTS_FILENAME": "./data/modelos/cell/cell-teacup/events.ev",
+        "DEVSML_MA_FILENAME": "./data/modelos/cell/cell-teacup/mafile.ma",
+        "DEVSML_TOP_FILENAME": "./data/modelos/cell/cell-teacup/top.xml",
+        "DIR_MA_CELL_DEVS": "./data/modelos/cell/cell-teacup/cell_devs.ma",
+        "DIR_CELL_DEVS": "./data/modelos/cell/cell-teacup/cell_devs.xml",
+        "DIR_VALFILE": "./data/modelos/cell/cell-teacup/valfile.val",
+        "VALFILE_GENERATOR": {
+            "name": "opinion",
+            "size_x": 5,
+            "size_y": 5,
+            "size_z": 2
+        },
+        "CELL_DEVS_ATOMIC": {
+            "name": "cell_devs_opinion",
+            "valfile_dir": "./data/modelos/cell/cell-teacup/valfile.val",
+            "size_x": 5,
+            "size_y": 5,
+            "size_z": 2
+        }
+    },
+    "manhattan": {
+        "DIR": "./data/modelos/cell/manhattan/",
+        "DIR_XMILE": "./data/modelos/cell/manhattan/teacup.xmile",
+        "DEVSML_CPP_H_DIRECTORY": "./data/modelos/cell/manhattan/atomics/",
+        "DEVSML_EVENTS_FILENAME": "./data/modelos/cell/manhattan/events.ev",
+        "DEVSML_MA_FILENAME": "./data/modelos/cell/manhattan/mafile.ma",
+        "DEVSML_TOP_FILENAME": "./data/modelos/cell/manhattan/top.xml",
+        "DIR_MA_CELL_DEVS": "./data/modelos/cell/manhattan/cell_devs.ma",
+        "DIR_VALFILE": "./data/modelos/cell/manhattan/valfile.val",
+        "DIR_CELL_DEVS": "./data/modelos/cell/manhattan/cell_devs.xml",
+        "VALFILE_GENERATOR":
+        {
+            "name": "manhattan",
+            "size_x": 62,
+            "size_y": 98,
+            "size_z": 2
+        },
+        "CELL_DEVS_ATOMIC": {
+            "name": "cell_devs_trafico",
+            "valfile_dir": "./data/modelos/cell/manhattan/valfile.val",
+            "size_x": 62,
+            "size_y": 98,
+            "size_z": 2
+        }
+    }
+}

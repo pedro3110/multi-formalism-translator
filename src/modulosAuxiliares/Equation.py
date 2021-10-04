@@ -1,8 +1,8 @@
 from py_expression_eval import Parser
-from src.modulosAuxiliares.SpecialFunctionFinder import SpecialFunctionFinder
+# from src.modulosAuxiliares.SpecialFunctionFinder import SpecialFunctionFinder
 
 
-class Equation(object):
+class Equation:
     def __init__(self, equation, sim_specs, dimensions=[], destiny_name='', debug=False):
         self.debug = debug
         # TODO : mejorar esto (MATHEMATICAL BUILTINS)
@@ -29,7 +29,7 @@ class Equation(object):
 
     # Setters
     def set_variables_and_equation_and_functions(self, equation, sim_specs, dimensions):
-
+        from src.modulosAuxiliares.SpecialFunctionFinder import SpecialFunctionFinder
         finder = SpecialFunctionFinder()
 
         #parser = EquationParser.create_parser(Parsers.XMILE_FUNCTION_PARSER)#EquationParser.create_parser(Parsers.PY_EXPRESSION_EVAL_PARSER) # EquationParser.create_parser(Parsers.XMILE_FUNCTION_PARSER)

@@ -1,0 +1,10 @@
+{
+  "steppulse": {
+    "DIR_XMILE": "root/modelos/step-pulse/step1.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "root/modelos/step-pulse/atomics/",
+    "DEVSML_EVENTS_FILENAME": "root/modelos/step-pulse/events.ev",
+    "DEVSML_TOP_FILENAME": "root/modelos/step-pulse/top.xml",
+    "DEVSML_MA_FILENAME": "root/modelos/step-pulse/mafile.ma",
+    "DEVSML_SH_FILENAME": "root/modelos/step-pulse/run.sh"
+  }
+}

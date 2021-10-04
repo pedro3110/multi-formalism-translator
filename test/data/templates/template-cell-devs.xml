@@ -1,0 +1,11 @@
+<atomicRef name="{{name}}" model="CellDEVS" name_level="0" parent="">
+<parameters><parameter name="type">{{type}}</parameter><parameter name="dim">{{dim}}</parameter><parameter name="delay">{{delay}}</parameter><parameter name="defaultDelayTime">{{default_delay_time}}</parameter><parameter name="border">{{border_type}}</parameter><parameter name="initialvalue">{{initial_value}}</parameter><parameter name="localtransition">{{local_transition}}</parameter><parameter name="initialCellsValue">valfile.val</parameter></parameters>
+<neighbors>{%- for neighbor in neighbors %}<neighbor>{{neighbor}}</neighbor>{%- endfor %}</neighbors><zones>{%- for zone in zones %}<zone rule="{{zone['rule']}}" cells="{{zone['cells']}}"></zone>{% endfor %}</zones>
+<transitions>{% for transition_name, transition_name_rules in rules.iteritems() -%}<transition name="{{transition_name}}">{%- for rule in transition_name_rules %}<rule action="{ {{rule['action']}} }" delay="{{rule['delay']}}" condition="{ {{rule['condition']}} }"></rule>{% endfor -%}</transition>{% endfor -%}</transitions>
+<portsInTransition>{% for pit in ports_in_transition -%}<transition component="{{pit['component']}}" input_port="{{pit['input_port']}}" rule="{{pit['rule']}}"></transition>{% endfor -%}</portsInTransition>
+<inputs>{% for input_port_name in input_ports -%}<input name="{{input_port_name}}" type="in"></input>{% endfor -%}</inputs>
+<outputs>{% for output_port_name in output_ports -%}<output name="{{output_port_name}}" type="out"></output>{% endfor -%}</outputs>
+<internal_connections>{% for iic in internal_input_connections -%}<connection port_from="{{iic['port_from']}}" component_from="{{iic['component_from']}}" component_to="{{iic['component_to']}}" port_to="{{iic['port_to']}}" type="{{iic['type']}}"/>{% endfor -%}{% for ioc in internal_output_connections -%}<connection component_from="{{ioc['component_from']}}" port_from="{{ioc['port_from']}}" component_to="{{ioc['component_to']}}" port_to="{{ioc['port_to']}}" type="{{ioc['type']}}"/>{% endfor -%}</internal_connections>
+<external_input_connections></external_input_connections>
+<external_output_connections></external_output_connections>
+</atomicRef>

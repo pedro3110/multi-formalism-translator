@@ -1,5 +1,6 @@
 from src.modulosDEVS.DEVSPort import DEVSPort
 from src.modulosDEVS.DEVSAtomic.DEVSAtomicComponent import DEVSAtomicComponent
+from src.modulosAuxiliares.Equation import Equation
 
 
 class DEVSDelay(DEVSAtomicComponent):
@@ -41,7 +42,6 @@ class DEVSDelay(DEVSAtomicComponent):
         self.parent = parent_name
 
     def set_equation(self):
-        from modulosAuxiliares.Equation import Equation
         return Equation(str(self.input_parameter), False)
 
     def set_name(self):

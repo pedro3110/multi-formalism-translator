@@ -10,6 +10,7 @@ import re
 
 class SpecialFunctionFinder(object):
     def __init__(self):
+
         # TODO: sacar estas regex a un archivo
         self.regexs = {
             'PULSE': [

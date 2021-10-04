@@ -13,16 +13,16 @@ class HCPPDEVSDelay(HCPPDEVSAtomic):
                     'delay_name': p.get('name'),
                     'delay_name_lower': delay_name, 'delay_name_upper': delay_name.upper(),
 
-                    'input_parameter': filter(lambda x: x.get('name') == 'input_parameter',
-                                              p.find('parameters').findall('parameter'))[0].text,
-                    'delay_parameter': filter(lambda x: x.get('name') == 'delay_parameter',
-                                              p.find('parameters').findall('parameter'))[0].text,
-                    'initial_delay_parameter': filter(lambda x: x.get('name') == 'initial_delay_parameter',
-                                                      p.find('parameters').findall('parameter'))[0].text,
+                    'input_parameter': list(filter(lambda x: x.get('name') == 'input_parameter',
+                                              p.find('parameters').findall('parameter')))[0].text,
+                    'delay_parameter': list(filter(lambda x: x.get('name') == 'delay_parameter',
+                                              p.find('parameters').findall('parameter')))[0].text,
+                    'initial_delay_parameter': list(filter(lambda x: x.get('name') == 'initial_delay_parameter',
+                                                      p.find('parameters').findall('parameter')))[0].text,
 
                     'output_ports': list(map(lambda x: x.get('name'), p.find('outputs').findall('output'))),
                     'equation':
-                        filter(lambda x: x.get('name') == 'equation', p.find('parameters').findall('parameter'))[
+                        list(filter(lambda x: x.get('name') == 'equation', p.find('parameters').findall('parameter')))[
                             0].text,
                 }))
         atomics_names.append(delay_name)

@@ -1,0 +1,1 @@
+atomics/bin/cd++ -mmafile.ma -eevents.ev -ooutput_devs -t{{hours}}:{{minutes}}:{{seconds}}:{{miliseconds}}

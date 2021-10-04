@@ -1,7 +1,7 @@
 from os import path
 from operator import methodcaller
 from jinja2 import Environment, FileSystemLoader, DictLoader
-
+from src.traductor.config import ROOT_TEMPLATES
 
 class CdppModelToMaConverter(object):
 
@@ -11,8 +11,7 @@ class CdppModelToMaConverter(object):
 
     @classmethod
     def templates_enviroment(cls):
-        PATH = './'
-        file_loader = FileSystemLoader(path.join(PATH, './root/modulosCDPP/templates'))
+        file_loader = FileSystemLoader(ROOT_TEMPLATES)
         return Environment(autoescape=False,
                            loader=file_loader,
                            trim_blocks=False)

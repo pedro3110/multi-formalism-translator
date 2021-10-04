@@ -125,7 +125,7 @@ class DEVSGenerator:
                 if child.tag == 'include':
                     elem.remove(child)
         x = etree.tostring(root)
-        vkb.xml(x, devsml_top_filename)
+        vkb.xml(x.decode('utf-8'), devsml_top_filename)
 
         # Erase unneeded files
         for filename in filenames:

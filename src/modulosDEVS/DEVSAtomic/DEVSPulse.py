@@ -1,5 +1,6 @@
 from src.modulosDEVS.DEVSPort import DEVSPort
 from src.modulosDEVS.DEVSAtomic.DEVSAtomicComponent import DEVSAtomicComponent
+from src.modulosAuxiliares.Equation import Equation
 
 
 class DEVSPulse(DEVSAtomicComponent):
@@ -44,7 +45,6 @@ class DEVSPulse(DEVSAtomicComponent):
         self.parent = parent_name
 
     def set_equation(self):
-        from modulosAuxiliares.Equation import Equation
         return Equation(str(self.volume), False)
 
     def set_name(self):

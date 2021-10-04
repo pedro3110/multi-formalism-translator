@@ -1,6 +1,6 @@
 from src.modulosDEVS.DEVSPort import DEVSPort
 from src.modulosDEVS.DEVSAtomic.DEVSAtomicComponent import DEVSAtomicComponent
-
+from src.modulosAuxiliares.Equation import Equation
 
 class DEVSUniform(DEVSAtomicComponent):
     def __init__(self, destiny_name, min_val, max_val, dt):
@@ -40,7 +40,6 @@ class DEVSUniform(DEVSAtomicComponent):
         self.parent = parent_name
 
     def set_equation(self):
-        from modulosAuxiliares.Equation import Equation
         return Equation(str(self.name), False)
 
     def set_name(self):

@@ -7,7 +7,7 @@ class HCPPDEVSCte(HCPPDEVSAtomic):
 
         cte_name = ac.get('name')
         cte_full_name = cte_name + ac.get('parent')
-        cte_value = filter(lambda x: x.get('name') == 'value', ac.find('parameters').findall('parameter'))[0].text
+        cte_value = list(filter(lambda x: x.get('name') == 'value', ac.find('parameters').findall('parameter')))[0].text
         atomics_names.append(cte_full_name)
 
         # TODO : ver esto. Son los casos en los que la Cte esta adentro de nn acoplado, y recibe input

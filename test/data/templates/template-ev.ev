@@ -1,0 +1,3 @@
+{% for ctes_names_value in ctes_names_values -%}
+00:00:00:000 in_port_{{ctes_names_value['cte_name']}} [{{ctes_names_value['cte_value']}}]
+{% endfor %}

@@ -12,22 +12,16 @@ class HCPPDEVSGraphical(HCPPDEVSAtomic):
                     'graphical_name': dg.get('name'),
                     'graphical_name_lower': graphical_name, 'graphical_name_upper': graphical_name.upper(),
                     'xscale_min':
-                        filter(lambda x: x.get('name') == 'xscale_min', dg.find('parameters').findall('parameter'))[
-                            0].text,
+                        list(filter(lambda x: x.get('name') == 'xscale_min', dg.find('parameters').findall('parameter')))[0].text,
                     'xscale_max':
-                        filter(lambda x: x.get('name') == 'xscale_max', dg.find('parameters').findall('parameter'))[
-                            0].text,
+                        list(filter(lambda x: x.get('name') == 'xscale_max', dg.find('parameters').findall('parameter')))[0].text,
                     'yscale_min':
-                        filter(lambda x: x.get('name') == 'yscale_min', dg.find('parameters').findall('parameter'))[
-                            0].text,
+                        list(filter(lambda x: x.get('name') == 'yscale_min', dg.find('parameters').findall('parameter')))[0].text,
                     'yscale_max':
-                        filter(lambda x: x.get('name') == 'yscale_max', dg.find('parameters').findall('parameter'))[
-                            0].text,
-                    'ypts': filter(lambda x: x.get('name') == 'ypts', dg.find('parameters').findall('parameter'))[
-                        0].text,
+                        list(filter(lambda x: x.get('name') == 'yscale_max', dg.find('parameters').findall('parameter')))[0].text,
+                    'ypts': list(filter(lambda x: x.get('name') == 'ypts', dg.find('parameters').findall('parameter')))[0].text,
                     'equation':
-                        filter(lambda x: x.get('name') == 'equation', dg.find('parameters').findall('parameter'))[
-                            0].text,
+                        list(filter(lambda x: x.get('name') == 'equation', dg.find('parameters').findall('parameter')))[0].text,
                     'input_ports': list(map(lambda x: x.get('name'), dg.find('inputs').findall('input'))),
                     'output_ports': list(map(lambda x: x.get('name'), dg.find('outputs').findall('output')))
                 }))
