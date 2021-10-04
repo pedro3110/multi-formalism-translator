@@ -1,0 +1,78 @@
+#include(macros.inc)
+{% for model in models recursive -%}
+{%- if model.model_type() in ['DEVSCoupledComponent', 'DEVSBasicCoupledComponent', 'DEVSArray'] -%}
+{% if model.components()|length > 0 %}
+%Coupled model
+[{{model.model_name()}}]
+components: {%- for component in model.components() %} {% if component.model_type() in ['DEVSCoupledComponent', 'DEVSBasicCoupledComponent', 'CellDEVS', 'DEVSArray'] %} {{component.model_name()}} {%- else -%} {{component.model_name_level()}}@{{component.model_name()}}{{component.model_parent()}} {%- endif -%} {%- endfor %}
+{% endif -%}
+% In ports
+{% if model.model_in_ports()|length > 0 -%}
+in: {%- for input in model.model_in_ports() %} in_port_{{input}} {%- endfor %}
+{% endif -%}
+% Out ports
+out: {%- for output in model.model_out_ports() %} out_port_{{output}} {%- endfor %}
+% Input connections
+{%- for connection in model.model_external_input_connections() %}
+link: in_port_{{ connection.port_from.port }} in_port_{{connection.port_to.port}}@{{connection.port_to.component}}
+{%- endfor %}
+% Output connections
+{%- for connection in model.model_external_output_connections() %}
+link: out_port_{{ connection.port_from.port}}@{{connection.port_from.component}} out_port_{{connection.port_to.port}}
+{%- endfor %}
+% Internal connections
+{%- for connection in model.model_internal_connections() %}
+link: out_port_{{ connection.port_from.port}}@{{connection.port_from.component}} {{connection.type}}_port_{{connection.port_to.port}}@{{connection.port_to.component}}
+{%- endfor -%}
+{{loop(model.components())}}
+
+{%- elif model.model_type() in ['DEVSIntegrator'] %}
+[{{model.model_name_level()}}]
+% Atomic model {{model.model_type()}}
+{% for name, value in model.model_parameters().items() -%}
+{{name}}: {{value}}
+{% endfor %}
+
+{%- elif model.model_type() in ['CellDEVS'] %}
+[{{model.model_name()}}]
+% Parameters
+{% for name, value in model.model_parameters().items() -%}
+{{name}}: {{value}}
+{% endfor %}
+% Neighbors
+neighbors:{% for neighbor in model.model_neighbors() %} {{neighbor}}{% endfor %}
+% Zones
+{% for zone in model.model_zones() %}
+zone: {{zone['rule']}} { {{zone['cells']}} }
+{%- endfor %}
+%In ports
+{% if model.model_in_ports()|length > 0 -%}
+in: {%- for input in model.model_in_ports() %} {{input}} {%- endfor %}
+{% endif -%}
+% Out ports
+out: {%- for output in model.model_out_ports() %} {{output}} {%- endfor %}
+% Input connections
+{%- for connection in model.model_external_input_connections() %}
+link: {{ connection.port_from.port }} {{connection.port_to.port}}@{{connection.port_to.component}}
+{%- endfor %}
+% Output connections
+{%- for connection in model.model_external_output_connections() %}
+link: {{ connection.port_from.port}}@{{connection.port_from.component}} {{connection.port_to.port}}
+{%- endfor %}
+% Internal connections
+{%- for connection in model.model_internal_connections() %}
+link: {{ connection.port_from.port}}{%- if connection.port_from.component != model.model_name() -%}@{{model.model_name()}}{{connection.port_from.component}}{% endif %} {{connection.port_to.port}}{%- if connection.port_to.component != model.model_name() -%}@{{model.model_name()}}{{connection.port_to.component}}{% endif %}
+{%- endfor %}
+% Ports in transition
+{%- for pit in model.model_ports_in_transition() %}
+PortInTransition: {{pit['input_port']}}@{{model.model_name()}}{{pit['component']}} {{pit['rule']}}
+{%- endfor %}
+% Transitions
+{%- for t_name, rules in model.model_transitions().items() %}
+[{{t_name}}]
+{%- for rule in rules %}
+rule: {{rule['action']}} {{rule['delay']}} {{rule['condition']}}
+{%- endfor %}
+{%- endfor %}
+{%- endif %}
+{%- endfor %}
