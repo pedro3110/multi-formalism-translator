@@ -1,0 +1,10 @@
+{
+  "sir": {
+    "DIR_XMILE": "./data/modelos/sir/sir.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "./data/modelos/sir/atomics/",
+    "DEVSML_EVENTS_FILENAME": "./data/modelos/sir/events.ev",
+    "DEVSML_TOP_FILENAME": "./data/modelos/sir/top.xml",
+    "DEVSML_MA_FILENAME": "./data/modelos/sir/mafile.ma",
+    "DEVSML_SH_FILENAME": "./data/modelos/sir/run.sh"
+  }
+}

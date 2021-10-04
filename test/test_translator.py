@@ -46,6 +46,35 @@ class ArrayTest(unittest.TestCase):
         hcpp_gen = HCPPGenerator()
         t.run_devs(devs_gen, hcpp_gen)
 
+    @unittest.skip
+    def test_lotka_volterra(self):
+        archivo_modelos_base = './data/corridas/lotka-volterra.json'
+        root_templates = ROOT_TEMPLATES
+        t = Traductor(archivo_modelos_base, root_templates)
+
+        devs_gen = DEVSGenerator(root_templates)
+        hcpp_gen = HCPPGenerator()
+        t.run_devs(devs_gen, hcpp_gen)
+
+    @unittest.skip
+    def test_teacup(self):
+        archivo_modelos_base = './data/corridas/teacup.json'
+        root_templates = ROOT_TEMPLATES
+        t = Traductor(archivo_modelos_base, root_templates)
+
+        devs_gen = DEVSGenerator(root_templates)
+        hcpp_gen = HCPPGenerator()
+        t.run_devs(devs_gen, hcpp_gen)
+
+    def test_sir(self):
+        archivo_modelos_base = './data/corridas/sir.json'
+        root_templates = ROOT_TEMPLATES
+        t = Traductor(archivo_modelos_base, root_templates)
+
+        devs_gen = DEVSGenerator(root_templates)
+        hcpp_gen = HCPPGenerator()
+        t.run_devs(devs_gen, hcpp_gen)
+
     # def test_step_pulse(self):
     #     archivo_modelos_base = './data/corridas/step-pulse.json'
     #     root_templates = ROOT_TEMPLATES

@@ -1,0 +1,10 @@
+{
+  "teacup": {
+    "DIR_XMILE": "./data/modelos/teacup/teacup.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "./data/modelos/teacup/atomics/",
+    "DEVSML_EVENTS_FILENAME": "./data/modelos/teacup/events.ev",
+    "DEVSML_TOP_FILENAME": "./data/modelos/teacup/top.xml",
+    "DEVSML_MA_FILENAME": "./data/modelos/teacup/mafile.ma",
+    "DEVSML_SH_FILENAME": "./data/modelos/teacup/run.sh"
+  }
+}

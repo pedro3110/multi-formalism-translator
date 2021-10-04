@@ -18,7 +18,6 @@ class DEVSGenerator:
         source_xmlns_isee = "{http://iseesystems.com/XMILE}"
 
         # Auxiliary functions
-        logging.info('PARSING : ' + dir_xmile)
         parser = etree.XMLParser(encoding="utf-8")
         with open(dir_xmile, 'r') as xml_file:
             xml_tree = etree.parse(xml_file, parser=parser)
@@ -26,7 +25,6 @@ class DEVSGenerator:
 
         # Get simulation parameters
         sim_specs, sim_specs_tag = defaultdict(), root.find(source_xmlns + 'sim_specs')
-
         # TODO: que es instantaneous_flows?
         sim_specs['instantaneous_flows'] = sim_specs_tag.get(source_xmlns_isee + 'instantaneous_flows')
 

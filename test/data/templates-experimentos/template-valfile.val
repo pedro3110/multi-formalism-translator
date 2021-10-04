@@ -1,0 +1,3 @@
+{% for val in values -%}
+{{val}}
+{% endfor %}
