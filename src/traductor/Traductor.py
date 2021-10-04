@@ -1,11 +1,11 @@
+import os
 import shutil
-import src.traductor.config as config
 import json
-from src.modulosDEVS.DEVSGenerator import *
-from src.modulosDEVS.CellDEVSGenerator import CellDEVSGenerator
-from src.modulosCDPP.cdpp_model import CdppModel
-from src.modulosCDPP.cdpp_model_to_ma_file import CdppModelToMaConverter
-from src.modulosCDPP.preprocessing import preprocessing_devsml_for_ma
+import src.traductor.config as config
+from src.formalismos.modulosDEVS import CellDEVSGenerator
+from src.formalismos.modulosCDPP import CdppModel
+from src.formalismos.modulosCDPP import CdppModelToMaConverter
+from src.formalismos.modulosCDPP.preprocessing import preprocessing_devsml_for_ma
 from src.modulosAuxiliares.valfile_generator import valfile_generator
 
 from src.modulosAuxiliares.cell_devs_atomic.cell_devs_atomic_generator import cell_devs_atomic_generator
@@ -13,7 +13,7 @@ from src.modulosAuxiliares.cell_devs_atomic.cell_devs_atomic_generator import ce
 
 class Traductor:
 
-    def __init__(self, archivo_modelos_base, root_templates, log='logs/traductor.log'):
+    def __init__(self, archivo_modelos_base, root_templates):
         self.DEVSML_TEMPLATE_FILENAME = config.DEVSML_TEMPLATE_FILENAME
         self.CPP_H_TEMPLATES_FILENAMES = config.CPP_H_TEMPLATES_FILENAMES
         self.ROOT_TEMPLATES = root_templates
@@ -56,11 +56,9 @@ class Traductor:
             # Generate .ma, .ev, .cpp, .h, reg.cpp
             self.hcpp_generator.generateHCPP(DEVSML_TOP_FILENAME,
                                              DEVSML_CPP_H_DIRECTORY,
-                                             # self.ROOT_TEMPLATES,
                                              self.CPP_H_TEMPLATES_FILENAMES,
                                              DEVSML_EVENTS_FILENAME,
                                              DEVSML_MA_FILENAME)
-
             # TODO: Generate run.sh
 
     ###################

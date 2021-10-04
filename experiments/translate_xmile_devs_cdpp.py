@@ -1,6 +1,6 @@
 from src.traductor.Traductor import Traductor
-from src.modulosDEVS.DEVSGenerator import DEVSGenerator
-from src.modulosCDPP.HCPPGenerator import HCPPGenerator
+from src.formalismos.modulosDEVS import DEVSGenerator
+from src.formalismos.modulosCDPP.HCPPGenerator import HCPPGenerator
 
 archivo_modelos_base = './data/corridas/array.json'
 t = Traductor(archivo_modelos_base)

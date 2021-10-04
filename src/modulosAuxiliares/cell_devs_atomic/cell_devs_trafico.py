@@ -1,4 +1,4 @@
-from src.modulosDEVS.DEVSAtomic.CellDevs import Cell
+from src.formalismos.modulosDEVS.DEVSAtomic.CellDevs import Cell
 import re
 
 
