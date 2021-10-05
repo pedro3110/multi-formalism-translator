@@ -1,4 +1,4 @@
-ROOT_TEMPLATES = './data/templates'
+ROOT_TEMPLATES = './data/templates-devs'
 DEVSML_TEMPLATE_FILENAME = 'template-devsml.xml'
 CPP_H_TEMPLATES_FILENAMES = {
     'sh': 'template-sh.sh',

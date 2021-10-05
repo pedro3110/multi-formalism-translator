@@ -9,7 +9,7 @@ class Generator:
         self.path = '/'
         self.template_environment = Environment(
             autoescape=False,
-            loader=FileSystemLoader(os.path.join(self.path, 'templates-experimentos')),
+            loader=FileSystemLoader(os.path.join(self.path, 'templates-devs-experimentos')),
             trim_blocks=False
         )
 

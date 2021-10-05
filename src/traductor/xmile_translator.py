@@ -8,10 +8,13 @@ from src.formalismos.cdpp import CdppModelToMaConverter
 from src.formalismos.cdpp.preprocessing import preprocessing_devsml_for_ma
 from src.utils.auxiliares import valfile_generator
 
+import xml.etree.cElementTree as etree
+import vkbeautify as vkb
+
 from src.utils.auxiliares.cell_devs_atomic.cell_devs_atomic_generator import cell_devs_atomic_generator
 
 
-class Traductor:
+class XmileTranslator:
 
     def __init__(self, archivo_modelos_base, root_templates):
         self.DEVSML_TEMPLATE_FILENAME = config.DEVSML_TEMPLATE_FILENAME

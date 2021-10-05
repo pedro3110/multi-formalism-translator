@@ -40,7 +40,7 @@ class ShockerDebt:
         self.path = '/'
         self.template_environment = Environment(
             autoescape=False,
-            loader=FileSystemLoader(os.path.join(self.path, 'templates-experimentos/shockers')),
+            loader=FileSystemLoader(os.path.join(self.path, 'templates-devs-experimentos/shockers')),
             trim_blocks=False
         )
 
@@ -52,7 +52,7 @@ class ShockerDebt:
     ####################################################
     def generate_shocker(self, folder):
 
-        # TODO: hacer diferentes templates para diferentes SHOCKERS
+        # TODO: hacer diferentes templates-devs para diferentes SHOCKERS
         template_h = 'template-shocker-debt.h'
         template_cpp = 'template-shocker-debt.cpp'
 

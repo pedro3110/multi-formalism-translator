@@ -12,7 +12,7 @@ class CellDEVSGenerator:
     def render_template(self, template_filename, context):
         # Jinja2
         PATH = '/'
-        PATH_TEMPLATES = 'root/templates'
+        PATH_TEMPLATES = 'root/templates-devs'
         TEMPLATE_ENVIRONMENT = Environment(
             autoescape=False,
             loader=FileSystemLoader(os.path.join(PATH, PATH_TEMPLATES)),

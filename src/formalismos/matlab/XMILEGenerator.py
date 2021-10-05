@@ -12,7 +12,7 @@ class XMILEGenerator(object):
         self.path = '/'
         self.template_environment = Environment(
             autoescape=False,
-            loader=FileSystemLoader(os.path.join(self.path, 'root/templates')),
+            loader=FileSystemLoader(os.path.join(self.path, 'root/templates-devs')),
             trim_blocks=False)
         self.xmile_template_filename = xmile_template_filename
         self.matlab_code = matlab_code

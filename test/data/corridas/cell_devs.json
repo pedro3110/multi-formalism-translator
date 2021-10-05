@@ -7,6 +7,7 @@
         "DEVSML_MA_FILENAME": "./data/modelos/cell/cell-teacup/mafile.ma",
         "DEVSML_TOP_FILENAME": "./data/modelos/cell/cell-teacup/top.xml",
         "DIR_MA_CELL_DEVS": "./data/modelos/cell/cell-teacup/cell_devs.ma",
+        "DEVSML_SH_FILENAME": "./data/modelos/cell/cell-teacup/run.sh",
         "DIR_CELL_DEVS": "./data/modelos/cell/cell-teacup/cell_devs.xml",
         "DIR_VALFILE": "./data/modelos/cell/cell-teacup/valfile.val",
         "VALFILE_GENERATOR": {
@@ -29,6 +30,7 @@
         "DEVSML_CPP_H_DIRECTORY": "./data/modelos/cell/manhattan/atomics/",
         "DEVSML_EVENTS_FILENAME": "./data/modelos/cell/manhattan/events.ev",
         "DEVSML_MA_FILENAME": "./data/modelos/cell/manhattan/mafile.ma",
+        "DEVSML_SH_FILENAME": "./data/modelos/cell/manhattan/run.sh",
         "DEVSML_TOP_FILENAME": "./data/modelos/cell/manhattan/top.xml",
         "DIR_MA_CELL_DEVS": "./data/modelos/cell/manhattan/cell_devs.ma",
         "DIR_VALFILE": "./data/modelos/cell/manhattan/valfile.val",
