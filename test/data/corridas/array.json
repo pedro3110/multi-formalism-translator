@@ -1,5 +1,6 @@
 {
   "array0": {
+    "DIR": "./data/modelos/builtin/array/array0/",
     "DIR_XMILE": "./data/modelos/builtin/array/array0/array0.xmile",
     "DEVSML_CPP_H_DIRECTORY": "./data/modelos/builtin/array/array0/atomics/",
     "DEVSML_EVENTS_FILENAME": "./data/modelos/builtin/array/array0/events.ev",
@@ -8,6 +9,7 @@
     "DEVSML_SH_FILENAME": "./data/modelos/builtin/array/array0/run.sh"
   },
   "array1": {
+    "DIR": "./data/modelos/builtin/array/array1/",
     "DIR_XMILE": "./data/modelos/builtin/array/array1/array1.xmile",
     "DEVSML_CPP_H_DIRECTORY": "./data/modelos/builtin/array/array1/atomics/",
     "DEVSML_EVENTS_FILENAME": "./data/modelos/builtin/array/array1/events.ev",
@@ -16,6 +18,7 @@
     "DEVSML_SH_FILENAME": "./data/modelos/builtin/array/array1/run.sh"
   },
   "array2": {
+    "DIR": "./data/modelos/builtin/array/array2/",
     "DIR_XMILE": "./data/modelos/builtin/array/array2/array2.xmile",
     "DEVSML_CPP_H_DIRECTORY": "./data/modelos/builtin/array/array2/atomics/",
     "DEVSML_EVENTS_FILENAME": "./data/modelos/builtin/array/array2/events.ev",
@@ -24,6 +27,7 @@
     "DEVSML_SH_FILENAME": "./data/modelos/builtin/array/array2/run.sh"
   },
   "array3": {
+    "DIR": "./data/modelos/builtin/array/array3/",
     "DIR_XMILE": "./data/modelos/builtin/array/array3/array3.xmile",
     "DEVSML_CPP_H_DIRECTORY": "./data/modelos/builtin/array/array3/atomics/",
     "DEVSML_EVENTS_FILENAME": "./data/modelos/builtin/array/array3/events.ev",

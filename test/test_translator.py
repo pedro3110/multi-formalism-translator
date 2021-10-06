@@ -5,10 +5,10 @@ from src.formalismos.cdpp.HCPPGenerator import HCPPGenerator
 from src.traductor.config import ROOT_TEMPLATES
 
 
-class FullTest(unittest.TestCase):
+class TranslatorXMILEtoCDPPTest(unittest.TestCase):
 
     def test_cell_devs(self):
-        # manhattan + teacup-celldevs
+        # atomics/bin/cd++ -mmafile.ma -eevents.ev -t00:01:00:00:000 -llog
         archivo_modelos_base = './data/corridas/cell_devs.json'
         root_templates = ROOT_TEMPLATES
         t = XmileTranslator(archivo_modelos_base, root_templates)

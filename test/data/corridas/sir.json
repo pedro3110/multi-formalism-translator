@@ -1,5 +1,6 @@
 {
   "sir": {
+    "DIR": "./data/modelos/sir",
     "DIR_XMILE": "./data/modelos/sir/sir.xmile",
     "DEVSML_CPP_H_DIRECTORY": "./data/modelos/sir/atomics/",
     "DEVSML_EVENTS_FILENAME": "./data/modelos/sir/events.ev",

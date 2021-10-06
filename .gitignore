@@ -1,3 +1,5 @@
 .idea
 *.pyc
 venv
+binaries
+notebooks-dev/data-experiments/*

@@ -1,5 +1,6 @@
 {
   "delay": {
+        "DIR": "./data/modelos/builtin/delay",
         "DIR_XMILE": "./data/modelos/builtin/delay/delay_1.xmile",
         "DEVSML_CPP_H_DIRECTORY": "./data/modelos/builtin/delay/atomics/",
         "DEVSML_EVENTS_FILENAME": "./data/modelos/builtin/delay/events.ev",

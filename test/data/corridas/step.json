@@ -1,5 +1,6 @@
 {
   "step": {
+    "DIR": "./data/modelos/step",
     "DIR_XMILE": "./data/modelos/step/step.xmile",
     "DEVSML_CPP_H_DIRECTORY": "./data/modelos/step/atomics/",
     "DEVSML_EVENTS_FILENAME": "./data/modelos/step/events.ev",

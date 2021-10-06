@@ -1,5 +1,6 @@
 {
   "lotka-volterra": {
+    "DIR": "./data/modelos/lotka-volterra/lotka-volterra",
     "DIR_XMILE": "./data/modelos/lotka-volterra/lotka-volterra.xmile",
     "DEVSML_CPP_H_DIRECTORY": "./data/modelos/lotka-volterra/atomics/",
     "DEVSML_EVENTS_FILENAME": "./data/modelos/lotka-volterra/events.ev",
