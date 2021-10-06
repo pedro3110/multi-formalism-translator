@@ -2,14 +2,15 @@ import math
 from jinja2 import DictLoader, Environment, FileSystemLoader
 import os
 
+
 class ShockerDebt:
 
     ####################################################
-    def __init__(self, type_, name_, limit, shock_only_once, n_outports, n_outports_to_shock, nombre_shock):
+    def __init__(self, templates_dir, type_, name_, limit, shock_only_once, n_outports, n_outports_to_shock, nombre_shock):
         assert(math.sqrt(n_outports).is_integer) # TODO: por ahora solo se permite shockear en cuadrados
         assert(n_outports > 1)
         assert(n_outports_to_shock > 0)
-
+        self.templates_dir = templates_dir
         self.inputvariables = ["Debt"]
         self.limit = limit
         self.shock_only_once = shock_only_once
@@ -40,7 +41,7 @@ class ShockerDebt:
         self.path = '/'
         self.template_environment = Environment(
             autoescape=False,
-            loader=FileSystemLoader(os.path.join(self.path, 'templates-devs-experimentos/shockers')),
+            loader=FileSystemLoader(templates_dir),
             trim_blocks=False
         )
 
@@ -48,8 +49,6 @@ class ShockerDebt:
     def render_template(self, template_filename, context):
         return self.template_environment.get_template(template_filename).render(context)
 
-
-    ####################################################
     def generate_shocker(self, folder):
 
         # TODO: hacer diferentes templates-devs para diferentes SHOCKERS

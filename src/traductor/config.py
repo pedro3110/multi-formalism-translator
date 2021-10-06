@@ -18,3 +18,4 @@ CPP_H_TEMPLATES_FILENAMES = {
     'DEVSArrayCollector': 'template-array-collector',
     'DEVSArrayAgregator': 'template-array-agregator'
 }
+a

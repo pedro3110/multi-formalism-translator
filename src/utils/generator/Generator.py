@@ -5,11 +5,11 @@ from random import shuffle
 
 
 class Generator:
-    def __init__(self):
-        self.path = '/'
+    def __init__(self, templates_dir):
+        self.templates_dir = templates_dir
         self.template_environment = Environment(
             autoescape=False,
-            loader=FileSystemLoader(os.path.join(self.path, 'templates-devs-experimentos')),
+            loader=FileSystemLoader(self.templates_dir),
             trim_blocks=False
         )
 
