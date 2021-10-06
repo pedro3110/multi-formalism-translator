@@ -1,10 +1,6 @@
 import unittest
 import json
-import sys, os
-from src.traductor.xmile_translator import XmileTranslator
-from src.formalismos.devs.DEVSGenerator import DEVSGenerator
-from src.formalismos.cdpp.HCPPGenerator import HCPPGenerator
-from src.traductor.config import ROOT_TEMPLATES
+import os
 
 
 class SimulationExecutionXMILEtoCDPPTest(unittest.TestCase):
