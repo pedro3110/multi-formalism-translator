@@ -1,0 +1,309 @@
+<coupledRef model="DEVSCoupledComponent" name="DEVS_COUPLED_top" name_level="xx" parent="">
+    <sim_specs>
+        <spec name="instantaneous_flows">None</spec>
+        <spec name="simulation_delay">None</spec>
+        <spec name="time_units">Time</spec>
+        <spec name="start">0</spec>
+        <spec name="stop">100</spec>
+        <spec name="dt">0.03125</spec>
+    </sim_specs>
+    <inputs>
+        <input name="total_population" type="in" />
+        <input name="contact_infectivity" type="in" />
+        <input name="duration" type="in" />
+    </inputs>
+    <outputs>
+        <output name="succumbing" type="out" />
+        <output name="recovering" type="out" />
+        <output name="recovered" type="out" />
+        <output name="susceptible" type="out" />
+        <output name="infectious" type="out" />
+    </outputs>
+    <components>
+        <atomicRef model="DEVSConstant" name="duration" name_level="xx" parent="top">
+            <inputs>
+                <input name="duration" type="in" />
+            </inputs>
+            <outputs>
+                <output name="duration" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">5</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSConstant" name="total_population" name_level="xx" parent="top">
+            <inputs>
+                <input name="total_population" type="in" />
+            </inputs>
+            <outputs>
+                <output name="total_population" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">1000</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSConstant" name="contact_infectivity" name_level="xx" parent="top">
+            <inputs>
+                <input name="contact_infectivity" type="in" />
+            </inputs>
+            <outputs>
+                <output name="contact_infectivity" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">0.3</parameter>
+            </parameters>
+        </atomicRef>
+        <coupledRef model="DEVSBasicCoupledComponent" name="DEVS_BASIC_COUPLED_susceptible" name_level="xx" parent="">
+            <inputs>
+                <input name="total_population" type="in" />
+                <input name="contact_infectivity" type="in" />
+                <input name="infectious" type="in" />
+            </inputs>
+            <outputs>
+                <output name="susceptible" type="out" />
+                <output name="succumbing" type="out" />
+            </outputs>
+            <components>
+                <atomicRef model="DEVSIntegrator" name="susceptible" name_level="xx" parent="DEVS_BASIC_COUPLED_susceptible">
+                    <inputs>
+                        <input name="subtract" type="in" />
+                        <input name="increment" type="in" />
+                        <input name="total_population" type="in" />
+                        <input name="Totsusceptible" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="susceptible" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="x0">total_population</parameter>
+                        <parameter name="dQRel">0.001</parameter>
+                        <parameter name="dQMin">0.001</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFtot" name="Totsusceptible" name_level="xx" parent="DEVS_BASIC_COUPLED_susceptible">
+                    <inputs>
+                        <input name="succumbing_susceptible" type="in_minus" />
+                    </inputs>
+                    <outputs>
+                        <output name="Totsusceptible" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">total_population</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFminus" name="succumbing_susceptible" name_level="xx" parent="DEVS_BASIC_COUPLED_susceptible">
+                    <inputs>
+                        <input name="susceptible" type="in" />
+                        <input name="contact_infectivity" type="in" />
+                        <input name="infectious" type="in" />
+                        <input name="total_population" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="succumbing_susceptible" type="out" />
+                        <output name="succumbing" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">susceptible*infectious/total_population*contact_infectivity</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+            </components>
+            <internal_connections>
+                <connection component_from="Totsusceptible" component_to="susceptible" port_from="Totsusceptible" port_to="Totsusceptible" type="in" />
+                <connection component_from="succumbing_susceptible" component_to="Totsusceptible" port_from="succumbing_susceptible" port_to="succumbing_susceptible" type="in_minus" />
+                <connection component_from="susceptible" component_to="succumbing_susceptible" port_from="susceptible" port_to="susceptible" type="in" />
+            </internal_connections>
+            <external_input_connections>
+                <connection component_to="succumbing_susceptible" port_from="total_population" port_to="total_population" />
+                <connection component_to="succumbing_susceptible" port_from="infectious" port_to="infectious" />
+                <connection component_to="succumbing_susceptible" port_from="contact_infectivity" port_to="contact_infectivity" />
+            </external_input_connections>
+            <external_output_connections>
+                <connection component_from="susceptible" port_from="susceptible" port_to="susceptible" />
+                <connection component_from="succumbing_susceptible" port_from="succumbing" port_to="succumbing" />
+            </external_output_connections>
+        </coupledRef>
+        <coupledRef model="DEVSBasicCoupledComponent" name="DEVS_BASIC_COUPLED_infectious" name_level="xx" parent="">
+            <inputs>
+                <input name="total_population" type="in" />
+                <input name="duration" type="in" />
+                <input name="susceptible" type="in" />
+                <input name="contact_infectivity" type="in" />
+            </inputs>
+            <outputs>
+                <output name="infectious" type="out" />
+                <output name="succumbing" type="out" />
+                <output name="recovering" type="out" />
+            </outputs>
+            <components>
+                <atomicRef model="DEVSIntegrator" name="infectious" name_level="xx" parent="DEVS_BASIC_COUPLED_infectious">
+                    <inputs>
+                        <input name="increment" type="in" />
+                        <input name="subtract" type="in" />
+                        <input name="Totinfectious" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="infectious" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="x0">5</parameter>
+                        <parameter name="dQRel">0.001</parameter>
+                        <parameter name="dQMin">0.001</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFtot" name="Totinfectious" name_level="xx" parent="DEVS_BASIC_COUPLED_infectious">
+                    <inputs>
+                        <input name="succumbing_infectious" type="in_plus" />
+                        <input name="recovering_infectious" type="in_minus" />
+                    </inputs>
+                    <outputs>
+                        <output name="Totinfectious" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">5</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFplus" name="succumbing_infectious" name_level="xx" parent="DEVS_BASIC_COUPLED_infectious">
+                    <inputs>
+                        <input name="total_population" type="in" />
+                        <input name="infectious" type="in" />
+                        <input name="contact_infectivity" type="in" />
+                        <input name="susceptible" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="succumbing_infectious" type="out" />
+                        <output name="succumbing" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">susceptible*infectious/total_population*contact_infectivity</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFminus" name="recovering_infectious" name_level="xx" parent="DEVS_BASIC_COUPLED_infectious">
+                    <inputs>
+                        <input name="infectious" type="in" />
+                        <input name="duration" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="recovering_infectious" type="out" />
+                        <output name="recovering" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">infectious/duration</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+            </components>
+            <internal_connections>
+                <connection component_from="infectious" component_to="recovering_infectious" port_from="infectious" port_to="infectious" type="in" />
+                <connection component_from="Totinfectious" component_to="infectious" port_from="Totinfectious" port_to="Totinfectious" type="in" />
+                <connection component_from="succumbing_infectious" component_to="Totinfectious" port_from="succumbing_infectious" port_to="succumbing_infectious" type="in_plus" />
+                <connection component_from="infectious" component_to="succumbing_infectious" port_from="infectious" port_to="infectious" type="in" />
+                <connection component_from="recovering_infectious" component_to="Totinfectious" port_from="recovering_infectious" port_to="recovering_infectious" type="in_minus" />
+            </internal_connections>
+            <external_input_connections>
+                <connection component_to="recovering_infectious" port_from="duration" port_to="duration" />
+                <connection component_to="succumbing_infectious" port_from="contact_infectivity" port_to="contact_infectivity" />
+                <connection component_to="succumbing_infectious" port_from="susceptible" port_to="susceptible" />
+                <connection component_to="succumbing_infectious" port_from="total_population" port_to="total_population" />
+            </external_input_connections>
+            <external_output_connections>
+                <connection component_from="infectious" port_from="infectious" port_to="infectious" />
+                <connection component_from="succumbing_infectious" port_from="succumbing" port_to="succumbing" />
+                <connection component_from="recovering_infectious" port_from="recovering" port_to="recovering" />
+            </external_output_connections>
+        </coupledRef>
+        <coupledRef model="DEVSBasicCoupledComponent" name="DEVS_BASIC_COUPLED_recovered" name_level="xx" parent="">
+            <inputs>
+                <input name="duration" type="in" />
+                <input name="infectious" type="in" />
+            </inputs>
+            <outputs>
+                <output name="recovered" type="out" />
+                <output name="recovering" type="out" />
+            </outputs>
+            <components>
+                <atomicRef model="DEVSIntegrator" name="recovered" name_level="xx" parent="DEVS_BASIC_COUPLED_recovered">
+                    <inputs>
+                        <input name="subtract" type="in" />
+                        <input name="Totrecovered" type="in" />
+                        <input name="increment" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="recovered" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="x0">0</parameter>
+                        <parameter name="dQRel">0.001</parameter>
+                        <parameter name="dQMin">0.001</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFtot" name="Totrecovered" name_level="xx" parent="DEVS_BASIC_COUPLED_recovered">
+                    <inputs>
+                        <input name="recovering_recovered" type="in_plus" />
+                    </inputs>
+                    <outputs>
+                        <output name="Totrecovered" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFplus" name="recovering_recovered" name_level="xx" parent="DEVS_BASIC_COUPLED_recovered">
+                    <inputs>
+                        <input name="infectious" type="in" />
+                        <input name="duration" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="recovering_recovered" type="out" />
+                        <output name="recovering" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">infectious/duration</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+            </components>
+            <internal_connections>
+                <connection component_from="recovering_recovered" component_to="Totrecovered" port_from="recovering_recovered" port_to="recovering_recovered" type="in_plus" />
+                <connection component_from="Totrecovered" component_to="recovered" port_from="Totrecovered" port_to="Totrecovered" type="in" />
+            </internal_connections>
+            <external_input_connections>
+                <connection component_to="recovering_recovered" port_from="duration" port_to="duration" />
+                <connection component_to="recovering_recovered" port_from="infectious" port_to="infectious" />
+            </external_input_connections>
+            <external_output_connections>
+                <connection component_from="recovered" port_from="recovered" port_to="recovered" />
+                <connection component_from="recovering_recovered" port_from="recovering" port_to="recovering" />
+            </external_output_connections>
+        </coupledRef>
+    </components>
+    <internal_connections>
+        <connection component_from="contact_infectivity" component_to="DEVS_BASIC_COUPLED_susceptible" port_from="contact_infectivity" port_to="contact_infectivity" type="in" />
+        <connection component_from="contact_infectivity" component_to="DEVS_BASIC_COUPLED_infectious" port_from="contact_infectivity" port_to="contact_infectivity" type="in" />
+        <connection component_from="duration" component_to="DEVS_BASIC_COUPLED_recovered" port_from="duration" port_to="duration" type="in" />
+        <connection component_from="duration" component_to="DEVS_BASIC_COUPLED_infectious" port_from="duration" port_to="duration" type="in" />
+        <connection component_from="total_population" component_to="DEVS_BASIC_COUPLED_infectious" port_from="total_population" port_to="total_population" type="in" />
+        <connection component_from="total_population" component_to="DEVS_BASIC_COUPLED_susceptible" port_from="total_population" port_to="total_population" type="in" />
+        <connection component_from="DEVS_BASIC_COUPLED_infectious" component_to="DEVS_BASIC_COUPLED_susceptible" port_from="infectious" port_to="infectious" type="in" />
+        <connection component_from="DEVS_BASIC_COUPLED_infectious" component_to="DEVS_BASIC_COUPLED_recovered" port_from="infectious" port_to="infectious" type="in" />
+        <connection component_from="DEVS_BASIC_COUPLED_susceptible" component_to="DEVS_BASIC_COUPLED_infectious" port_from="susceptible" port_to="susceptible" type="in" />
+    </internal_connections>
+    <external_input_connections>
+        <connection component_to="total_population" port_from="total_population" port_to="total_population" />
+        <connection component_to="contact_infectivity" port_from="contact_infectivity" port_to="contact_infectivity" />
+        <connection component_to="duration" port_from="duration" port_to="duration" />
+    </external_input_connections>
+    <external_output_connections>
+        <connection component_from="DEVS_BASIC_COUPLED_susceptible" port_from="susceptible" port_to="susceptible" />
+        <connection component_from="DEVS_BASIC_COUPLED_susceptible" port_from="succumbing" port_to="succumbing" />
+        <connection component_from="DEVS_BASIC_COUPLED_infectious" port_from="infectious" port_to="infectious" />
+        <connection component_from="DEVS_BASIC_COUPLED_infectious" port_from="succumbing" port_to="succumbing" />
+        <connection component_from="DEVS_BASIC_COUPLED_infectious" port_from="recovering" port_to="recovering" />
+        <connection component_from="DEVS_BASIC_COUPLED_recovered" port_from="recovered" port_to="recovered" />
+        <connection component_from="DEVS_BASIC_COUPLED_recovered" port_from="recovering" port_to="recovering" />
+    </external_output_connections>
+</coupledRef>

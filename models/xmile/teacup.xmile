@@ -1,0 +1,35 @@
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+    <header>
+        <vendor>James Houghton</vendor>
+        <name>Teacup</name>
+        <options>
+            <uses_outputs/>
+        </options>
+        <product version="1.0">Hand Coded XMILE</product>
+    </header>
+    <sim_specs>
+        <stop>30.0</stop>
+        <start>0.0</start>
+        <dt>0.125</dt>
+    </sim_specs>
+    <model>
+        <variables>
+            <flow name="HeatLosstoRoom">
+                <doc>Heat LosstoRoom</doc>
+                <eqn>("TeacupTemperature"-"RoomTemperature")/"CharacteristicTime"</eqn>
+            </flow>
+            <aux name="RoomTemperature">
+                <doc>AmbientRoomTemperature</doc>
+                <eqn>70</eqn>
+            </aux>
+            <stock name="TeacupTemperature">
+                <doc>The average temperature of the tea and the cup</doc>
+                <outflow>"HeatLosstoRoom"</outflow>
+                <eqn>180</eqn>
+            </stock>
+            <aux name="CharacteristicTime">
+                <eqn>10</eqn>
+            </aux>
+        </variables>
+    </model>
+</xmile>

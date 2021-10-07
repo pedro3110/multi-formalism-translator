@@ -1,0 +1,11 @@
+{
+  "lotka-volterra": {
+    "DIR_CDPP": "models/cdpp/lotka-volterra",
+    "DIR_XMILE": "models/xmile/lotka-volterra.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "models/cdpp/lotka-volterra/atomics/",
+    "DEVSML_EVENTS_FILENAME": "models/cdpp/lotka-volterra/events.ev",
+    "DEVSML_TOP_FILENAME": "models/devs/lotka-volterra.xml",
+    "DEVSML_MA_FILENAME": "models/cdpp/lotka-volterra/mafile.ma",
+    "DEVSML_SH_FILENAME": "models/cdpp/lotka-volterra/run.sh"
+  }
+}

@@ -1,6 +1,7 @@
 import os
 import shutil
 import json
+from src.traductor.config import PROJECT_DIRECTORY
 import src.traductor.config as config
 from src.formalismos.devs import CellDEVSGenerator
 from src.formalismos.cdpp import CdppModel
@@ -33,12 +34,12 @@ class XmileTranslator:
         self.hcpp_generator = hcpp_generator
 
         for model, params in self.params_traducciones.items():
-            DIR_XMILE = params['DIR_XMILE']
-            DEVSML_CPP_H_DIRECTORY = params['DEVSML_CPP_H_DIRECTORY']
-            DEVSML_TOP_FILENAME = params['DEVSML_TOP_FILENAME']
-            DEVSML_EVENTS_FILENAME = params['DEVSML_EVENTS_FILENAME']
-            DEVSML_MA_FILENAME = params['DEVSML_MA_FILENAME']
-            DEVSML_SH_FILENAME = params['DEVSML_SH_FILENAME']
+            DIR_XMILE = os.path.join(PROJECT_DIRECTORY, params['DIR_XMILE'])
+            DEVSML_CPP_H_DIRECTORY = os.path.join(PROJECT_DIRECTORY, params['DEVSML_CPP_H_DIRECTORY'])
+            DEVSML_TOP_FILENAME = os.path.join(PROJECT_DIRECTORY, params['DEVSML_TOP_FILENAME'])
+            DEVSML_EVENTS_FILENAME = os.path.join(PROJECT_DIRECTORY, params['DEVSML_EVENTS_FILENAME'])
+            DEVSML_MA_FILENAME = os.path.join(PROJECT_DIRECTORY, params['DEVSML_MA_FILENAME'])
+            DEVSML_SH_FILENAME = os.path.join(PROJECT_DIRECTORY, params['DEVSML_SH_FILENAME'])
 
             try:
                 shutil.rmtree(DEVSML_CPP_H_DIRECTORY)

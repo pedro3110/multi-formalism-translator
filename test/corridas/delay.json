@@ -1,0 +1,11 @@
+{
+  "delay": {
+        "DIR_CDPP": "models/cdpp/builtin/delay",
+        "DIR_XMILE": "models/xmile/delay/delay_1.xmile",
+        "DEVSML_CPP_H_DIRECTORY": "models/cdpp/builtin/delay/atomics/",
+        "DEVSML_EVENTS_FILENAME": "models/cdpp/builtin/delay/events.ev",
+        "DEVSML_TOP_FILENAME": "models/devs/delay_1.xml",
+        "DEVSML_MA_FILENAME": "models/cdpp/builtin/delay/mafile.ma",
+        "DEVSML_SH_FILENAME": "models/cdpp/builtin/delay/run.sh"
+    }
+}

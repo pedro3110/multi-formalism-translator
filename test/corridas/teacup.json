@@ -1,0 +1,13 @@
+{
+  "teacup": {
+      "DIR_CDPP": "models/cdpp/teacup",
+      "DIR_XMILE": "models/xmile/teacup.xmile",
+      "DEVSML_TOP_FILENAME": "models/devs/teacup.xml",
+
+      "DEVSML_CPP_H_DIRECTORY": "models/cdpp/teacup/atomics/",
+      "DEVSML_EVENTS_FILENAME": "models/cdpp/teacup/events.ev",
+
+      "DEVSML_MA_FILENAME": "models/cdpp/teacup/mafile.ma",
+      "DEVSML_SH_FILENAME": "models/cdpp/teacup/run.sh"
+  }
+}

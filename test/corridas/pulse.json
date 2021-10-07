@@ -1,0 +1,38 @@
+{
+  "pulse1": {
+    "DIR_CDPP": "models/cdpp/builtin/pulse1",
+    "DIR_XMILE": "models/xmile/pulse/pulse1.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "models/cdpp/builtin/pulse1/atomics/",
+    "DEVSML_EVENTS_FILENAME": "models/cdpp/builtin/pulse1/events.ev",
+    "DEVSML_TOP_FILENAME": "models/devs/pulse1.xml",
+    "DEVSML_MA_FILENAME": "models/cdpp/builtin/pulse1/mafile.ma",
+    "DEVSML_SH_FILENAME": "models/cdpp/builtin/pulse1/run.sh"
+  },
+  "pulse2": {
+    "DIR_CDPP": "models/cdpp/builtin/pulse2",
+    "DIR_XMILE": "models/xmile/pulse/pulse1.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "models/cdpp/builtin/pulse2/atomics/",
+    "DEVSML_EVENTS_FILENAME": "models/cdpp/builtin/pulse2/events.ev",
+    "DEVSML_TOP_FILENAME": "models/devs/pulse2.xml",
+    "DEVSML_MA_FILENAME": "models/cdpp/builtin/pulse2/mafile.ma",
+    "DEVSML_SH_FILENAME": "models/cdpp/builtin/pulse2/run.sh"
+  },
+  "pulse3": {
+    "DIR_CDPP": "models/cdpp/builtin/pulse3",
+    "DIR_XMILE": "models/xmile/pulse/pulse3.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "models/cdpp/builtin/pulse3/atomics/",
+    "DEVSML_EVENTS_FILENAME": "models/cdpp/builtin/pulse3/events.ev",
+    "DEVSML_TOP_FILENAME": "models/devs/pulse3.xml",
+    "DEVSML_MA_FILENAME": "models/cdpp/builtin/pulse3/mafile.ma",
+    "DEVSML_SH_FILENAME": ".models/cdpp/builtin/pulse3/run.sh"
+  },
+  "pulse4": {
+    "DIR_CDPP": "./data/modelos/builtin/pulse4",
+    "DIR_XMILE": "models/xmile/pulse/pulse4.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "./data/modelos/builtin/pulse4/atomics/",
+    "DEVSML_EVENTS_FILENAME": "./data/modelos/builtin/pulse4/events.ev",
+    "DEVSML_TOP_FILENAME": "models/devs/pulse4.xml",
+    "DEVSML_MA_FILENAME": "./data/modelos/builtin/pulse4/mafile.ma",
+    "DEVSML_SH_FILENAME": "./data/modelos/builtin/pulse4/run.sh"
+  }
+}

@@ -1,0 +1,109 @@
+<coupledRef model="DEVSCoupledComponent" name="DEVS_COUPLED_top" name_level="xx" parent="">
+    <sim_specs>
+        <spec name="instantaneous_flows">false</spec>
+        <spec name="simulation_delay">0.0294118</spec>
+        <spec name="time_units">Seconds</spec>
+        <spec name="start">0</spec>
+        <spec name="stop">50</spec>
+        <spec name="dt">4</spec>
+    </sim_specs>
+    <inputs>
+        <input name="converter1" type="in" />
+    </inputs>
+    <outputs>
+        <output name="flow1" type="out" />
+        <output name="stock1" type="out" />
+        <output name="converter1" type="out" />
+    </outputs>
+    <components>
+        <atomicRef model="DEVSGraphical" name="converter1" name_level="xx" parent="DEVS_COUPLED_top">
+            <inputs>
+                <input name="stock1" type="in" />
+            </inputs>
+            <outputs>
+                <output name="converter1" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="equation">stock1</parameter>
+                <parameter name="xscale_min">0</parameter>
+                <parameter name="xscale_max">100</parameter>
+                <parameter name="yscale_min">0</parameter>
+                <parameter name="yscale_max">10</parameter>
+                <parameter name="ypts">0.98,1.29,1.29,1.29,1.29,1.29,1.29,1.29,1.29,1.29,1.29,1.322,1.354,1.386,1.418,1.45,1.49,1.53,1.57,1.61,1.64333333333333,1.67666666666667,1.71,1.74333333333333,1.77666666666667,1.81,1.84,1.87,1.9,1.93,1.96,1.99,2.02,2.05,2.08428571428571,2.11857142857143,2.15285714285714,2.18714285714286,2.22142857142857,2.25571428571429,2.53,2.57,2.61,2.65,2.69,2.74333333333333,2.79666666666667,2.85,2.93,2.98333333333333,3.03666666666667,3.13,3.17,3.29,3.37,3.43,3.53,3.65,3.86,4.22,4.26,4.3,4.46,4.5,4.58,4.66,4.7,4.74,4.86,4.94,5.02,5.14,5.16,5.18,5.3,5.34,5.38,5.46,5.48666666666667,5.51333333333333,5.58,5.66,5.7,5.74,5.78,5.94,5.98,6.06,6.14,6.16666666666667,6.19333333333333,6.31,6.43,6.47,6.63,6.69,6.75,6.79,6.91,7.03,7.15,7.19,7.23,7.35,7.39,7.51,7.53,7.63,7.67,7.75,7.95,7.99,8.03,8.07,8.19,8.23,8.31,8.47,8.49666666666667,8.52333333333333,8.59,8.67,8.76,8.8,8.82,8.92,8.96,9,9.04,9.06,9.08,9.1,9.12,9.12,9.12,9.14,9.16,9.18,9.2,9.22,9.24,9.24,9.24,9.26666666666667,9.29333333333333,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.36,9.36,9.36,9.36,9.37333333333333,9.38666666666667,9.4,9.42,9.44,9.4,9.4,9.36,9.32,9.30666666666667,9.29333333333333,9.24,9.2,9.12,9.1,7.67,7.59,6.67,6.47,6.44333333333333,6.41666666666667,6.06,5.86,5.78,5.74,5.54,5.51333333333333,5.48666666666667,5.42,5.34,5.22,5.18,5.16,5.14,5.06,5.02,4.98,4.95333333333333,4.92666666666667,4.86,4.78,4.72,4.66,4.64,4.54,4.5,4.42,4.18,4.14,4.12,4.06,3.9,3.86,3.82,3.78,3.755,3.73,3.69,3.65,3.65,3.65,3.65,3.61,3.61,3.57,3.53,3.53,3.53,3.49,3.49,3.49,3.49,3.46333333333333,3.43666666666667,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.45,3.45,3.45,3.45,3.45,3.45,3.45,3.45,3.46,3.47,3.48,3.49,3.53,3.53,3.55,3.57,3.57,3.57,3.57,3.57,3.57,3.57,3.57,3.61,3.65,3.66333333333333,3.67666666666667,3.69,3.69,3.735,3.78,3.78,3.78,3.78,3.78</parameter>
+            </parameters>
+        </atomicRef>
+        <coupledRef model="DEVSBasicCoupledComponent" name="DEVS_BASIC_COUPLED_stock1" name_level="xx" parent="">
+            <inputs>
+                <input name="converter1" type="in" />
+            </inputs>
+            <outputs>
+                <output name="stock1" type="out" />
+                <output name="flow1" type="out" />
+            </outputs>
+            <components>
+                <atomicRef model="DEVSIntegrator" name="stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="subtract" type="in" />
+                        <input name="increment" type="in" />
+                        <input name="Totstock1" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="stock1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="x0">2</parameter>
+                        <parameter name="dQRel">0.001</parameter>
+                        <parameter name="dQMin">0.001</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFtot" name="Totstock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="flow1_stock1" type="in_plus" />
+                    </inputs>
+                    <outputs>
+                        <output name="Totstock1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">2</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFplus" name="flow1_stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="stock1" type="in" />
+                        <input name="converter1" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="flow1_stock1" type="out" />
+                        <output name="flow1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">converter1/stock1</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+            </components>
+            <internal_connections>
+                <connection component_from="flow1_stock1" component_to="Totstock1" port_from="flow1_stock1" port_to="flow1_stock1" type="in_plus" />
+                <connection component_from="Totstock1" component_to="stock1" port_from="Totstock1" port_to="Totstock1" type="in" />
+                <connection component_from="stock1" component_to="flow1_stock1" port_from="stock1" port_to="stock1" type="in" />
+            </internal_connections>
+            <external_input_connections>
+                <connection component_to="flow1_stock1" port_from="converter1" port_to="converter1" />
+            </external_input_connections>
+            <external_output_connections>
+                <connection component_from="stock1" port_from="stock1" port_to="stock1" />
+                <connection component_from="flow1_stock1" port_from="flow1" port_to="flow1" />
+            </external_output_connections>
+        </coupledRef>
+    </components>
+    <internal_connections>
+        <connection component_from="converter1" component_to="DEVS_BASIC_COUPLED_stock1" port_from="converter1" port_to="converter1" type="in" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" component_to="converter1" port_from="stock1" port_to="stock1" type="in" />
+    </internal_connections>
+    <external_input_connections />
+    <external_output_connections>
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="stock1" port_to="stock1" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="flow1" port_to="flow1" />
+    </external_output_connections>
+</coupledRef>

@@ -1,0 +1,11 @@
+{
+  "sir": {
+    "DIR_CDPP": "models/cdpp/sir",
+    "DIR_XMILE": "models/xmile/sir.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "models/cdpp/sir/atomics/",
+    "DEVSML_EVENTS_FILENAME": "models/cdpp/sir/events.ev",
+    "DEVSML_TOP_FILENAME": "models/devs/sir.xml",
+    "DEVSML_MA_FILENAME": "models/cdpp/sir/mafile.ma",
+    "DEVSML_SH_FILENAME": "models/cdpp/sir/run.sh"
+  }
+}

@@ -1,0 +1,231 @@
+<coupledRef model="DEVSCoupledComponent" name="DEVS_COUPLED_top" name_level="xx" parent="">
+    <sim_specs>
+        <spec name="instantaneous_flows">false</spec>
+        <spec name="simulation_delay">0.015</spec>
+        <spec name="time_units">Months</spec>
+        <spec name="start">1</spec>
+        <spec name="stop">100</spec>
+        <spec name="dt">2</spec>
+    </sim_specs>
+    <inputs>
+        <input name="exra" type="in" />
+        <input name="firstPulse" type="in" />
+        <input name="interval" type="in" />
+        <input name="volume" type="in" />
+    </inputs>
+    <outputs>
+        <output name="flow2" type="out" />
+        <output name="flow3" type="out" />
+        <output name="stock1" type="out" />
+        <output name="flow1" type="out" />
+    </outputs>
+    <components>
+        <atomicRef model="DEVSConstant" name="firstPulse" name_level="xx" parent="top">
+            <inputs>
+                <input name="firstPulse" type="in" />
+            </inputs>
+            <outputs>
+                <output name="firstPulse" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">1</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSConstant" name="exra" name_level="xx" parent="top">
+            <inputs>
+                <input name="exra" type="in" />
+            </inputs>
+            <outputs>
+                <output name="exra" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">1</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSConstant" name="interval" name_level="xx" parent="top">
+            <inputs>
+                <input name="interval" type="in" />
+            </inputs>
+            <outputs>
+                <output name="interval" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">10</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSConstant" name="volume" name_level="xx" parent="top">
+            <inputs>
+                <input name="volume" type="in" />
+            </inputs>
+            <outputs>
+                <output name="volume" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">5</parameter>
+            </parameters>
+        </atomicRef>
+        <coupledRef model="DEVSBasicCoupledComponent" name="DEVS_BASIC_COUPLED_stock1" name_level="xx" parent="">
+            <inputs>
+                <input name="exra" type="in" />
+                <input name="firstPulse" type="in" />
+                <input name="interval" type="in" />
+                <input name="volume" type="in" />
+            </inputs>
+            <outputs>
+                <output name="stock1" type="out" />
+                <output name="flow1" type="out" />
+                <output name="flow2" type="out" />
+                <output name="flow3" type="out" />
+            </outputs>
+            <components>
+                <atomicRef model="DEVSIntegrator" name="stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="subtract" type="in" />
+                        <input name="increment" type="in" />
+                        <input name="Totstock1" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="stock1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="x0">1000</parameter>
+                        <parameter name="dQRel">0.001</parameter>
+                        <parameter name="dQMin">0.001</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFtot" name="Totstock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="flow2_stock1" type="in_plus" />
+                        <input name="flow1_stock1" type="in_minus" />
+                        <input name="flow3_stock1" type="in_minus" />
+                    </inputs>
+                    <outputs>
+                        <output name="Totstock1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">1000</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFplus" name="flow2_stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="PULSE_V_volume_I_interval_flow2" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="flow2_stock1" type="out" />
+                        <output name="flow2" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">PULSE_V_volume_I_interval_flow2</parameter>
+                        <parameter name="non_negative">1</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFminus" name="flow1_stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="PULSE_V_volume_I_interval_flow1" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="flow1_stock1" type="out" />
+                        <output name="flow1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">PULSE_V_volume_I_interval_flow1</parameter>
+                        <parameter name="non_negative">1</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFminus" name="flow3_stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="exra" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="flow3_stock1" type="out" />
+                        <output name="flow3" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">exra</parameter>
+                        <parameter name="non_negative">1</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSPulse" name="PULSE_V_volume_I_interval_flow2" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="firstPulse" type="in" />
+                        <input name="volume" type="in" />
+                        <input name="interval" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="PULSE_V_volume_I_interval_flow2" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="dt">2</parameter>
+                        <parameter name="equation">volume</parameter>
+                        <parameter name="volume_param" />
+                        <parameter name="volume_input">volume</parameter>
+                        <parameter name="interval_param" />
+                        <parameter name="interval_input">interval</parameter>
+                        <parameter name="firstPulse_input">firstPulse</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSPulse" name="PULSE_V_volume_I_interval_flow1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="firstPulse" type="in" />
+                        <input name="volume" type="in" />
+                        <input name="interval" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="PULSE_V_volume_I_interval_flow1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="dt">2</parameter>
+                        <parameter name="equation">volume</parameter>
+                        <parameter name="volume_param" />
+                        <parameter name="volume_input">volume</parameter>
+                        <parameter name="interval_param" />
+                        <parameter name="interval_input">interval</parameter>
+                        <parameter name="firstPulse_input">firstPulse</parameter>
+                    </parameters>
+                </atomicRef>
+            </components>
+            <internal_connections>
+                <connection component_from="PULSE_V_volume_I_interval_flow2" component_to="flow2_stock1" port_from="PULSE_V_volume_I_interval_flow2" port_to="PULSE_V_volume_I_interval_flow2" type="in" />
+                <connection component_from="flow3_stock1" component_to="Totstock1" port_from="flow3_stock1" port_to="flow3_stock1" type="in_minus" />
+                <connection component_from="flow1_stock1" component_to="Totstock1" port_from="flow1_stock1" port_to="flow1_stock1" type="in_minus" />
+                <connection component_from="PULSE_V_volume_I_interval_flow1" component_to="flow1_stock1" port_from="PULSE_V_volume_I_interval_flow1" port_to="PULSE_V_volume_I_interval_flow1" type="in" />
+                <connection component_from="Totstock1" component_to="stock1" port_from="Totstock1" port_to="Totstock1" type="in" />
+                <connection component_from="flow2_stock1" component_to="Totstock1" port_from="flow2_stock1" port_to="flow2_stock1" type="in_plus" />
+            </internal_connections>
+            <external_input_connections>
+                <connection component_to="PULSE_V_volume_I_interval_flow2" port_from="interval" port_to="interval" />
+                <connection component_to="PULSE_V_volume_I_interval_flow2" port_from="volume" port_to="volume" />
+                <connection component_to="PULSE_V_volume_I_interval_flow2" port_from="firstPulse" port_to="firstPulse" />
+                <connection component_to="PULSE_V_volume_I_interval_flow1" port_from="firstPulse" port_to="firstPulse" />
+                <connection component_to="PULSE_V_volume_I_interval_flow1" port_from="volume" port_to="volume" />
+                <connection component_to="PULSE_V_volume_I_interval_flow1" port_from="interval" port_to="interval" />
+                <connection component_to="flow3_stock1" port_from="exra" port_to="exra" />
+            </external_input_connections>
+            <external_output_connections>
+                <connection component_from="stock1" port_from="stock1" port_to="stock1" />
+                <connection component_from="flow1_stock1" port_from="flow1" port_to="flow1" />
+                <connection component_from="flow2_stock1" port_from="flow2" port_to="flow2" />
+                <connection component_from="flow3_stock1" port_from="flow3" port_to="flow3" />
+            </external_output_connections>
+        </coupledRef>
+    </components>
+    <internal_connections>
+        <connection component_from="firstPulse" component_to="DEVS_BASIC_COUPLED_stock1" port_from="firstPulse" port_to="firstPulse" type="in" />
+        <connection component_from="interval" component_to="DEVS_BASIC_COUPLED_stock1" port_from="interval" port_to="interval" type="in" />
+        <connection component_from="exra" component_to="DEVS_BASIC_COUPLED_stock1" port_from="exra" port_to="exra" type="in" />
+        <connection component_from="volume" component_to="DEVS_BASIC_COUPLED_stock1" port_from="volume" port_to="volume" type="in" />
+    </internal_connections>
+    <external_input_connections>
+        <connection component_to="exra" port_from="exra" port_to="exra" />
+        <connection component_to="firstPulse" port_from="firstPulse" port_to="firstPulse" />
+        <connection component_to="interval" port_from="interval" port_to="interval" />
+        <connection component_to="volume" port_from="volume" port_to="volume" />
+    </external_input_connections>
+    <external_output_connections>
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="stock1" port_to="stock1" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="flow1" port_to="flow1" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="flow2" port_to="flow2" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="flow3" port_to="flow3" />
+    </external_output_connections>
+</coupledRef>

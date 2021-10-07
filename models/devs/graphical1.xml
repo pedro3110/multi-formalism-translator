@@ -1,0 +1,152 @@
+<coupledRef model="DEVSCoupledComponent" name="DEVS_COUPLED_top" name_level="xx" parent="">
+    <sim_specs>
+        <spec name="instantaneous_flows">false</spec>
+        <spec name="simulation_delay">0.015</spec>
+        <spec name="time_units">Months</spec>
+        <spec name="start">1</spec>
+        <spec name="stop">100</spec>
+        <spec name="dt">4</spec>
+    </sim_specs>
+    <inputs>
+        <input name="converter2" type="in" />
+        <input name="converter1" type="in" />
+    </inputs>
+    <outputs>
+        <output name="converter3" type="out" />
+        <output name="converter1" type="out" />
+        <output name="Flow1" type="out" />
+        <output name="converter2" type="out" />
+        <output name="sumValue" type="out" />
+        <output name="stock1" type="out" />
+    </outputs>
+    <components>
+        <atomicRef model="DEVSAux" name="sumValue" name_level="xx" parent="top">
+            <inputs>
+                <input name="stock1" type="in" />
+                <input name="converter1" type="in" />
+            </inputs>
+            <outputs>
+                <output name="sumValue" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="equation">converter1+stock1</parameter>
+                <parameter name="non_negative">0</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSGraphical" name="converter2" name_level="xx" parent="DEVS_COUPLED_top">
+            <inputs />
+            <outputs>
+                <output name="converter2" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="equation">TIME</parameter>
+                <parameter name="xscale_min">1</parameter>
+                <parameter name="xscale_max">100</parameter>
+                <parameter name="yscale_min">-10</parameter>
+                <parameter name="yscale_max">10</parameter>
+                <parameter name="ypts">-0.87,-0.64,-0.54,-0.21,0.07,0.45,0.615,0.78,1.02,1.25,1.395,1.54,1.77,2.06,2.155,2.25,2.43,2.62,2.67,2.86,2.96,3.05,3.14,3.19,3.29,3.38,3.43,3.43,3.43,3.43,3.43,3.38,3.33,3.24,3.19,3.05,2.96,2.81,2.77,2.62,2.53,2.34,1.96,1.68,1.39,1.11,0.78,0.5,-0.07,-0.64,-0.87,-1.35,-2.01,-2.25,-2.53,-2.96,-3.05,-3.33,-3.62,-3.785,-4.04,-4.28,-4.47,-4.66,-4.8,-4.94,-4.99,-5.08,-5.13,-5.175,-5.22,-5.27,-5.32,-5.41,-5.41,-5.51,-5.51,-5.51,-5.51,-5.51,-5.51,-5.56,-5.56,-5.56,-5.56,-5.56,-5.51,-5.37,-5.32,-5.27,-5.22,-5.08,-5.04,-4.94,-4.75,-4.52,-4.28,-3.9,-3.81,-1.21</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSGraphical" name="converter1" name_level="xx" parent="DEVS_COUPLED_top">
+            <inputs />
+            <outputs>
+                <output name="converter1" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="equation">TIME</parameter>
+                <parameter name="xscale_min">1</parameter>
+                <parameter name="xscale_max">100</parameter>
+                <parameter name="yscale_min">0</parameter>
+                <parameter name="yscale_max">1000</parameter>
+                <parameter name="ypts">80.8,77.4,76.5,75.6,75.2,74.4,130,130,130,130,130,135,140,140,140,140,150,153.333333333333,156.666666666667,160,160,170,180,185,190,200,210,210,215,220,240,240,240,250,260,265,270,275,280,290,300,310,310,320,330,330,330,350,360,370,370,370,380,390,390,390,400,410,410,420,430,430,440,450,455,460,470,490,490,510,510,530,550,560,570,590,600,630,660,700,710,730,740,750,760,780,785,790,800,810,820,830,830,840,840,840,840,840,840,870</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSGraphical" name="converter3" name_level="xx" parent="DEVS_COUPLED_top">
+            <inputs />
+            <outputs>
+                <output name="converter3" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="equation">TIME</parameter>
+                <parameter name="xscale_min">-10</parameter>
+                <parameter name="xscale_max">100</parameter>
+                <parameter name="yscale_min">0</parameter>
+                <parameter name="yscale_max">100</parameter>
+                <parameter name="ypts">49.8,44.7,43.9,43.9,43.9,43.5,49,50.2,51.4,52.0714285714286,52.7428571428572,53.4142857142857,54.0857142857143,54.7571428571429,55.4285714285714,56.1,56.58,57.06,57.54,58.02,58.5,59.3,60.1,60.9,61.775,62.65,63.525,64.4,65.2,66,66.8,67.36,67.92,68.48,69.04,69.6,70.275,70.95,71.625,72.3,72.9,73.5,74.1,74.7,75.42,76.14,76.86,77.58,78.3,78.975,79.65,80.325,81,81.7,82.4,83.1,83.8,84.36,84.92,85.48,86.04,86.6,87.375,88.15,88.925,89.7,90.3666666666667,91.0333333333333,91.7,92.2,92.7,93.2,93.7,93.9666666666667,94.2333333333333,94.5,94.9,95.3,95.85,96.4,96.4,96.4,96.4,96.4,96.8,96.8,96.8,96.4,56.5,56.3,56.1,55.3,54.9,53.8,52.6,51.4,51,49.8,47.4,45.1,45.8,45.8,45.8,46.2,46.2,46.2,46.2,46,45.8,44.7,45.1,45.1,45.1,45.8,45.8,46.2,46.2,47,47.4,48.6,49.4,49.8,50.6,51,51.8,52.2,52.6,53,54.2,54.5,55.3,55.7,56.5,57.3,58.1,58.5,58.9,59.3,59.7,60.1,60.5,61.3,61.3,64.8</parameter>
+            </parameters>
+        </atomicRef>
+        <coupledRef model="DEVSBasicCoupledComponent" name="DEVS_BASIC_COUPLED_stock1" name_level="xx" parent="">
+            <inputs>
+                <input name="converter2" type="in" />
+            </inputs>
+            <outputs>
+                <output name="stock1" type="out" />
+                <output name="Flow1" type="out" />
+            </outputs>
+            <components>
+                <atomicRef model="DEVSIntegrator" name="stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="subtract" type="in" />
+                        <input name="increment" type="in" />
+                        <input name="Totstock1" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="stock1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="x0">1000</parameter>
+                        <parameter name="dQRel">0.001</parameter>
+                        <parameter name="dQMin">0.001</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFtot" name="Totstock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="Flow1_stock1" type="in_minus" />
+                    </inputs>
+                    <outputs>
+                        <output name="Totstock1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">1000</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFminus" name="Flow1_stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="converter2" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="Flow1_stock1" type="out" />
+                        <output name="Flow1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">converter2</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+            </components>
+            <internal_connections>
+                <connection component_from="Flow1_stock1" component_to="Totstock1" port_from="Flow1_stock1" port_to="Flow1_stock1" type="in_minus" />
+                <connection component_from="Totstock1" component_to="stock1" port_from="Totstock1" port_to="Totstock1" type="in" />
+            </internal_connections>
+            <external_input_connections>
+                <connection component_to="Flow1_stock1" port_from="converter2" port_to="converter2" />
+            </external_input_connections>
+            <external_output_connections>
+                <connection component_from="stock1" port_from="stock1" port_to="stock1" />
+                <connection component_from="Flow1_stock1" port_from="Flow1" port_to="Flow1" />
+            </external_output_connections>
+        </coupledRef>
+    </components>
+    <internal_connections>
+        <connection component_from="converter1" component_to="sumValue" port_from="converter1" port_to="converter1" type="in" />
+        <connection component_from="converter2" component_to="DEVS_BASIC_COUPLED_stock1" port_from="converter2" port_to="converter2" type="in" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" component_to="sumValue" port_from="stock1" port_to="stock1" type="in" />
+    </internal_connections>
+    <external_input_connections />
+    <external_output_connections>
+        <connection component_from="sumValue" port_from="sumValue" port_to="sumValue" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="stock1" port_to="stock1" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="Flow1" port_to="Flow1" />
+    </external_output_connections>
+</coupledRef>

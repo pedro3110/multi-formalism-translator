@@ -1,0 +1,349 @@
+<coupledRef model="DEVSCoupledComponent" name="DEVS_COUPLED_top" name_level="xx" parent="">
+    <sim_specs>
+        <spec name="instantaneous_flows">false</spec>
+        <spec name="simulation_delay">0.0148515</spec>
+        <spec name="time_units">Months</spec>
+        <spec name="start">0</spec>
+        <spec name="stop">100</spec>
+        <spec name="dt">1000</spec>
+    </sim_specs>
+    <inputs>
+        <input name="var12" type="in" />
+        <input name="var21" type="in" />
+        <input name="SUM_array1_ALL_ALL" type="in" />
+    </inputs>
+    <outputs>
+        <output name="SUM_array1_ALL_ALL" type="out" />
+        <output name="SumArray1" type="out" />
+        <output name="var11" type="out" />
+        <output name="var22" type="out" />
+        <output name="flow1" type="out" />
+        <output name="flow2" type="out" />
+        <output name="stock1" type="out" />
+        <output name="array1" type="out" />
+        <output name="stock2" type="out" />
+    </outputs>
+    <components>
+        <atomicRef model="DEVSConstant" name="var21" name_level="xx" parent="top">
+            <inputs>
+                <input name="var21" type="in" />
+            </inputs>
+            <outputs>
+                <output name="var21" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">0.5</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSAux" name="SumArray1" name_level="xx" parent="top">
+            <inputs>
+                <input name="SUM_array1_ALL_ALL" type="in" />
+            </inputs>
+            <outputs>
+                <output name="SumArray1" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="equation">SUM_array1_ALL_ALL</parameter>
+                <parameter name="non_negative">0</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSArrayAgregator" name="SUM_array1_ALL_ALL" name_level="xx" parent="DEVS_COUPLED_top">
+            <inputs>
+                <input name="array1" type="in" />
+            </inputs>
+            <outputs>
+                <output name="SUM_array1_ALL_ALL" type="out" />
+            </outputs>
+            <dimensions>
+                <dim name="dim1" position="0" size="2" />
+                <dim name="dim2" position="1" size="2" />
+            </dimensions>
+            <parameters>
+                <parameter name="equation">SUM(array1[*,*])</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSAux" name="var11" name_level="xx" parent="top">
+            <inputs>
+                <input name="stock1" type="in" />
+            </inputs>
+            <outputs>
+                <output name="var11" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="equation">stock1</parameter>
+                <parameter name="non_negative">0</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSAux" name="var22" name_level="xx" parent="top">
+            <inputs>
+                <input name="stock2" type="in" />
+            </inputs>
+            <outputs>
+                <output name="var22" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="equation">stock2</parameter>
+                <parameter name="non_negative">0</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSConstant" name="var12" name_level="xx" parent="top">
+            <inputs>
+                <input name="var12" type="in" />
+            </inputs>
+            <outputs>
+                <output name="var12" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">10</parameter>
+            </parameters>
+        </atomicRef>
+        <coupledRef model="DEVSBasicCoupledComponent" name="DEVS_BASIC_COUPLED_stock1" name_level="xx" parent="">
+            <inputs />
+            <outputs>
+                <output name="stock1" type="out" />
+                <output name="flow1" type="out" />
+            </outputs>
+            <components>
+                <atomicRef model="DEVSIntegrator" name="stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="subtract" type="in" />
+                        <input name="increment" type="in" />
+                        <input name="Totstock1" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="stock1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="x0">10</parameter>
+                        <parameter name="dQRel">0.001</parameter>
+                        <parameter name="dQMin">0.001</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFtot" name="Totstock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="flow1_stock1" type="in_plus" />
+                    </inputs>
+                    <outputs>
+                        <output name="Totstock1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">10</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFplus" name="flow1_stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="stock1" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="flow1_stock1" type="out" />
+                        <output name="flow1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">stock1/100</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+            </components>
+            <internal_connections>
+                <connection component_from="flow1_stock1" component_to="Totstock1" port_from="flow1_stock1" port_to="flow1_stock1" type="in_plus" />
+                <connection component_from="Totstock1" component_to="stock1" port_from="Totstock1" port_to="Totstock1" type="in" />
+                <connection component_from="stock1" component_to="flow1_stock1" port_from="stock1" port_to="stock1" type="in" />
+            </internal_connections>
+            <external_input_connections />
+            <external_output_connections>
+                <connection component_from="stock1" port_from="stock1" port_to="stock1" />
+                <connection component_from="flow1_stock1" port_from="flow1" port_to="flow1" />
+            </external_output_connections>
+        </coupledRef>
+        <coupledRef model="DEVSBasicCoupledComponent" name="DEVS_BASIC_COUPLED_stock2" name_level="xx" parent="">
+            <inputs />
+            <outputs>
+                <output name="stock2" type="out" />
+                <output name="flow2" type="out" />
+            </outputs>
+            <components>
+                <atomicRef model="DEVSIntegrator" name="stock2" name_level="xx" parent="DEVS_BASIC_COUPLED_stock2">
+                    <inputs>
+                        <input name="increment" type="in" />
+                        <input name="subtract" type="in" />
+                        <input name="Totstock2" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="stock2" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="x0">100</parameter>
+                        <parameter name="dQRel">0.001</parameter>
+                        <parameter name="dQMin">0.001</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFtot" name="Totstock2" name_level="xx" parent="DEVS_BASIC_COUPLED_stock2">
+                    <inputs>
+                        <input name="flow2_stock2" type="in_minus" />
+                    </inputs>
+                    <outputs>
+                        <output name="Totstock2" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">100</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFminus" name="flow2_stock2" name_level="xx" parent="DEVS_BASIC_COUPLED_stock2">
+                    <inputs>
+                        <input name="stock2" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="flow2_stock2" type="out" />
+                        <output name="flow2" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">stock2/100</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+            </components>
+            <internal_connections>
+                <connection component_from="Totstock2" component_to="stock2" port_from="Totstock2" port_to="Totstock2" type="in" />
+                <connection component_from="flow2_stock2" component_to="Totstock2" port_from="flow2_stock2" port_to="flow2_stock2" type="in_minus" />
+                <connection component_from="stock2" component_to="flow2_stock2" port_from="stock2" port_to="stock2" type="in" />
+            </internal_connections>
+            <external_input_connections />
+            <external_output_connections>
+                <connection component_from="stock2" port_from="stock2" port_to="stock2" />
+                <connection component_from="flow2_stock2" port_from="flow2" port_to="flow2" />
+            </external_output_connections>
+        </coupledRef>
+        <coupledRef model="DEVSArray" name="array1" name_level="xx" parent="">
+            <inputs>
+                <input name="var11" type="in" />
+                <input name="var21" type="in" />
+                <input name="var12" type="in" />
+                <input name="var22" type="in" />
+            </inputs>
+            <outputs>
+                <output name="array1" type="out" />
+            </outputs>
+            <components>
+                <atomicRef model="DEVSAux" name="array1_1_1" name_level="xx" parent="array1">
+                    <inputs>
+                        <input name="var11" type="in" />
+                        <input name="var22" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="array1_1_1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">var11/var22</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSAux" name="array1_1_2" name_level="xx" parent="array1">
+                    <inputs>
+                        <input name="var12" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="array1_1_2" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">var12</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSAux" name="array1_2_1" name_level="xx" parent="array1">
+                    <inputs>
+                        <input name="var22" type="in" />
+                        <input name="var11" type="in" />
+                        <input name="var21" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="array1_2_1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">var21+var11+var22</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSAux" name="array1_2_2" name_level="xx" parent="array1">
+                    <inputs>
+                        <input name="var11" type="in" />
+                        <input name="var22" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="array1_2_2" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">var22*var11</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSArrayCollector" name="collector" name_level="xx" parent="array1">
+                    <inputs>
+                        <input name="array1_1_1" type="in" />
+                        <input name="array1_1_2" type="in" />
+                        <input name="array1_2_1" type="in" />
+                        <input name="array1_2_2" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="array1" type="out" />
+                    </outputs>
+                    <dimensions>
+                        <dim name="dim1" position="0" size="2" />
+                        <dim name="dim2" position="1" size="2" />
+                    </dimensions>
+                    <atomics_array_position>
+                        <aap name="array1_1_1" position="1,1" />
+                        <aap name="array1_1_2" position="1,2" />
+                        <aap name="array1_2_1" position="2,1" />
+                        <aap name="array1_2_2" position="2,2" />
+                    </atomics_array_position>
+                    <parameters />
+                </atomicRef>
+            </components>
+            <internal_connections>
+                <connection component_from="array1_2_2" component_to="collector" port_from="array1_2_2" port_to="array1_2_2" type="in" />
+                <connection component_from="array1_2_1" component_to="collector" port_from="array1_2_1" port_to="array1_2_1" type="in" />
+                <connection component_from="array1_1_1" component_to="collector" port_from="array1_1_1" port_to="array1_1_1" type="in" />
+                <connection component_from="array1_1_2" component_to="collector" port_from="array1_1_2" port_to="array1_1_2" type="in" />
+            </internal_connections>
+            <external_input_connections>
+                <connection component_to="array1_1_1" port_from="var11" port_to="var11" />
+                <connection component_to="array1_2_1" port_from="var11" port_to="var11" />
+                <connection component_to="array1_2_2" port_from="var11" port_to="var11" />
+                <connection component_to="array1_2_1" port_from="var21" port_to="var21" />
+                <connection component_to="array1_1_2" port_from="var12" port_to="var12" />
+                <connection component_to="array1_1_1" port_from="var22" port_to="var22" />
+                <connection component_to="array1_2_1" port_from="var22" port_to="var22" />
+                <connection component_to="array1_2_2" port_from="var22" port_to="var22" />
+            </external_input_connections>
+            <external_output_connections>
+                <connection component_from="collector" port_from="array1" port_to="array1" />
+            </external_output_connections>
+        </coupledRef>
+    </components>
+    <internal_connections>
+        <connection component_from="SUM_array1_ALL_ALL" component_to="SumArray1" port_from="SUM_array1_ALL_ALL" port_to="SUM_array1_ALL_ALL" type="in" />
+        <connection component_from="var21" component_to="array1" port_from="var21" port_to="var21" type="in" />
+        <connection component_from="var22" component_to="array1" port_from="var22" port_to="var22" type="in" />
+        <connection component_from="var12" component_to="array1" port_from="var12" port_to="var12" type="in" />
+        <connection component_from="var11" component_to="array1" port_from="var11" port_to="var11" type="in" />
+        <connection component_from="array1" component_to="SUM_array1_ALL_ALL" port_from="array1" port_to="array1" type="in" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock2" component_to="var22" port_from="stock2" port_to="stock2" type="in" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" component_to="var11" port_from="stock1" port_to="stock1" type="in" />
+    </internal_connections>
+    <external_input_connections>
+        <connection component_to="var12" port_from="var12" port_to="var12" />
+        <connection component_to="var21" port_from="var21" port_to="var21" />
+    </external_input_connections>
+    <external_output_connections>
+        <connection component_from="SumArray1" port_from="SumArray1" port_to="SumArray1" />
+        <connection component_from="var11" port_from="var11" port_to="var11" />
+        <connection component_from="var22" port_from="var22" port_to="var22" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="stock1" port_to="stock1" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="flow1" port_to="flow1" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock2" port_from="stock2" port_to="stock2" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock2" port_from="flow2" port_to="flow2" />
+        <connection component_from="array1" port_from="array1" port_to="array1" />
+    </external_output_connections>
+</coupledRef>

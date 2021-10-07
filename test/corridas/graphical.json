@@ -1,0 +1,38 @@
+{
+  "graphical1": {
+    "DIR_CDPP": "models/cdpp/builtin/graphical1",
+    "DIR_XMILE": "models/xmile/graphical/graphical1.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "models/cdpp/builtin/graphical1/atomics/",
+    "DEVSML_EVENTS_FILENAME": "models/cdpp/builtin/graphical1/events.ev",
+    "DEVSML_TOP_FILENAME": "models/devs/graphical1.xml",
+    "DEVSML_MA_FILENAME": "models/cdpp/builtin/graphical1/mafile.ma",
+    "DEVSML_SH_FILENAME": "models/cdpp/builtin/graphical1/run.sh"
+  },
+  "graphical2": {
+    "DIR_CDPP": "models/cdpp/builtin/graphical2",
+    "DIR_XMILE": "models/xmile/graphical/graphical2.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "models/cdpp/builtin/graphical2/atomics/",
+    "DEVSML_EVENTS_FILENAME": "models/cdpp/builtin/graphical2/events.ev",
+    "DEVSML_TOP_FILENAME": "models/devs/graphical2.xml",
+    "DEVSML_MA_FILENAME": "models/cdpp/builtin/graphical2/mafile.ma",
+    "DEVSML_SH_FILENAME": "models/cdpp/builtin/graphical2/run.sh"
+  },
+  "graphical3": {
+    "DIR_CDPP": "models/cdpp/builtin/graphical3",
+    "DIR_XMILE": "models/xmile/graphical/graphical3.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "models/cdpp/builtin/graphical3/atomics/",
+    "DEVSML_EVENTS_FILENAME": "models/cdpp/builtin/graphical3/events.ev",
+    "DEVSML_TOP_FILENAME": "models/devs/graphical3.xml",
+    "DEVSML_MA_FILENAME": "models/cdpp/builtin/graphical3/mafile.ma",
+    "DEVSML_SH_FILENAME": "models/cdpp/builtin/graphical3/run.sh"
+  },
+  "graphical4": {
+    "DIR_CDPP": "models/cdpp/builtin/graphical4",
+    "DIR_XMILE": "models/xmile/graphical/graphical4.xmile",
+    "DEVSML_CPP_H_DIRECTORY": "models/cdpp/builtin/graphical4/atomics/",
+    "DEVSML_EVENTS_FILENAME": "models/cdpp/builtin/graphical4/events.ev",
+    "DEVSML_TOP_FILENAME": "models/devs/graphical4.xml",
+    "DEVSML_MA_FILENAME": "models/cdpp/builtin/graphical4/mafile.ma",
+    "DEVSML_SH_FILENAME": "models/cdpp/builtin/graphical4/run.sh"
+  }
+}

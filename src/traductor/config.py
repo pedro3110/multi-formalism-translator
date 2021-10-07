@@ -1,4 +1,8 @@
-ROOT_TEMPLATES = './data/templates-devs'
+import os
+
+PROJECT_DIRECTORY = os.getenv('MULTI_FORMALISM_TRANSLATOR_DIRECTORY')
+ROOT_TEMPLATES = os.path.join(PROJECT_DIRECTORY, 'templates/templates-devs')
+
 DEVSML_TEMPLATE_FILENAME = 'template-devsml.xml'
 CPP_H_TEMPLATES_FILENAMES = {
     'sh': 'template-sh.sh',
@@ -18,4 +22,3 @@ CPP_H_TEMPLATES_FILENAMES = {
     'DEVSArrayCollector': 'template-array-collector',
     'DEVSArrayAgregator': 'template-array-agregator'
 }
-a

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee"/>
+		<name>graphical3</name>
+		<uuid>3cc3b54a-d09e-4bcc-a2f1-a55b83e1b46d</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.5" isee:build_number="1277" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.0294118" method="RK4" time_units="Seconds" isee:instantaneous_flows="false">
+		<start>0</start>
+		<stop>50</stop>
+		<dt reciprocal="true">4</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<data>
+		<export resource="F:/SED/Tesis/tesis/modelos-nested/modelos/builtin/graphical3/output_xmile.csv" interval="DT" precomputed="false" isee:format="numbers">
+			<all/>
+		</export>
+	</data>
+	<model_units/>
+	<model>
+		<variables>
+			<aux name="converter1">
+				<eqn>stock1</eqn>
+				<gf>
+					<xscale min="0" max="100"/>
+					<yscale min="0" max="10"/>
+					<ypts>0.98,1.29,1.29,1.29,1.29,1.29,1.29,1.29,1.29,1.29,1.29,1.322,1.354,1.386,1.418,1.45,1.49,1.53,1.57,1.61,1.64333333333333,1.67666666666667,1.71,1.74333333333333,1.77666666666667,1.81,1.84,1.87,1.9,1.93,1.96,1.99,2.02,2.05,2.08428571428571,2.11857142857143,2.15285714285714,2.18714285714286,2.22142857142857,2.25571428571429,2.53,2.57,2.61,2.65,2.69,2.74333333333333,2.79666666666667,2.85,2.93,2.98333333333333,3.03666666666667,3.13,3.17,3.29,3.37,3.43,3.53,3.65,3.86,4.22,4.26,4.3,4.46,4.5,4.58,4.66,4.7,4.74,4.86,4.94,5.02,5.14,5.16,5.18,5.3,5.34,5.38,5.46,5.48666666666667,5.51333333333333,5.58,5.66,5.7,5.74,5.78,5.94,5.98,6.06,6.14,6.16666666666667,6.19333333333333,6.31,6.43,6.47,6.63,6.69,6.75,6.79,6.91,7.03,7.15,7.19,7.23,7.35,7.39,7.51,7.53,7.63,7.67,7.75,7.95,7.99,8.03,8.07,8.19,8.23,8.31,8.47,8.49666666666667,8.52333333333333,8.59,8.67,8.76,8.8,8.82,8.92,8.96,9,9.04,9.06,9.08,9.1,9.12,9.12,9.12,9.14,9.16,9.18,9.2,9.22,9.24,9.24,9.24,9.26666666666667,9.29333333333333,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.32,9.36,9.36,9.36,9.36,9.37333333333333,9.38666666666667,9.4,9.42,9.44,9.4,9.4,9.36,9.32,9.30666666666667,9.29333333333333,9.24,9.2,9.12,9.1,7.67,7.59,6.67,6.47,6.44333333333333,6.41666666666667,6.06,5.86,5.78,5.74,5.54,5.51333333333333,5.48666666666667,5.42,5.34,5.22,5.18,5.16,5.14,5.06,5.02,4.98,4.95333333333333,4.92666666666667,4.86,4.78,4.72,4.66,4.64,4.54,4.5,4.42,4.18,4.14,4.12,4.06,3.9,3.86,3.82,3.78,3.755,3.73,3.69,3.65,3.65,3.65,3.65,3.61,3.61,3.57,3.53,3.53,3.53,3.49,3.49,3.49,3.49,3.46333333333333,3.43666666666667,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.41,3.45,3.45,3.45,3.45,3.45,3.45,3.45,3.45,3.46,3.47,3.48,3.49,3.53,3.53,3.55,3.57,3.57,3.57,3.57,3.57,3.57,3.57,3.57,3.61,3.65,3.66333333333333,3.67666666666667,3.69,3.69,3.735,3.78,3.78,3.78,3.78,3.78</ypts>
+				</gf>
+			</aux>
+			<stock name="stock1">
+				<eqn>2</eqn>
+				<inflow>flow1</inflow>
+				<non_negative/>
+			</stock>
+			<flow name="flow1">
+				<eqn>converter1 / stock1</eqn>
+			</flow>
+			<isee:dependencies>
+				<var name="converter1">
+					<in>stock1</in>
+				</var>
+				<var name="flow1">
+					<in>converter1</in>
+					<in>stock1</in>
+				</var>
+			</isee:dependencies>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" isee:report_month_names="false" interval="1" report_balances="beginning" report_flows="instantaneous"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" page_width="1099" page_height="769" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="55" height="45"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom">
+						<shape type="circle" radius="18"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" isee:report_month_names="false" interval="1" report_balances="beginning" report_flows="instantaneous"/>
+				</style>
+				<aux x="311.25" y="135" name="converter1"/>
+				<stock x="463" y="241" name="stock1"/>
+				<flow x="317.25" y="238" name="flow1">
+					<pts>
+						<pt x="182" y="238"/>
+						<pt x="440.5" y="238"/>
+					</pts>
+				</flow>
+				<connector uid="1" angle="283.614">
+					<from>converter1</from>
+					<to>flow1</to>
+				</connector>
+				<connector uid="2" angle="129.289">
+					<from>stock1</from>
+					<to>converter1</to>
+				</connector>
+				<connector uid="3" angle="148.841">
+					<from>stock1</from>
+					<to>flow1</to>
+				</connector>
+				<stacked_container uid="4" x="556" y="33" width="494" height="347">
+					<graph x="556" y="33" width="494" height="347" type="time_series" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Graph" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="stock1"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="5" x="559" y="401" width="519" height="349">
+					<graph x="559" y="401" width="519" height="349" type="time_series" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Graph" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="converter1"/>
+						</plot>
+					</graph>
+				</stacked_container>
+			</view>
+		</views>
+	</model>
+</xmile>
+

@@ -1,0 +1,89 @@
+<coupledRef model="DEVSCoupledComponent" name="DEVS_COUPLED_top" name_level="xx" parent="">
+    <sim_specs>
+        <spec name="instantaneous_flows">None</spec>
+        <spec name="simulation_delay">None</spec>
+        <spec name="time_units">None</spec>
+        <spec name="start">0.0</spec>
+        <spec name="stop">30.0</spec>
+        <spec name="dt">0.125</spec>
+    </sim_specs>
+    <inputs>
+        <input name="RoomTemperature" type="in" />
+        <input name="CharacteristicTime" type="in" />
+    </inputs>
+    <outputs>
+        <output name="TeacupTemperature" type="out" />
+    </outputs>
+    <components>
+        <atomicRef model="DEVSConstant" name="CharacteristicTime" name_level="xx" parent="top">
+            <inputs>
+                <input name="CharacteristicTime" type="in" />
+            </inputs>
+            <outputs>
+                <output name="CharacteristicTime" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">10</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSConstant" name="RoomTemperature" name_level="xx" parent="top">
+            <inputs>
+                <input name="RoomTemperature" type="in" />
+            </inputs>
+            <outputs>
+                <output name="RoomTemperature" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">70</parameter>
+            </parameters>
+        </atomicRef>
+        <coupledRef model="DEVSBasicCoupledComponent" name="DEVS_BASIC_COUPLED_TeacupTemperature" name_level="xx" parent="">
+            <inputs />
+            <outputs>
+                <output name="TeacupTemperature" type="out" />
+            </outputs>
+            <components>
+                <atomicRef model="DEVSIntegrator" name="TeacupTemperature" name_level="xx" parent="DEVS_BASIC_COUPLED_TeacupTemperature">
+                    <inputs>
+                        <input name="increment" type="in" />
+                        <input name="subtract" type="in" />
+                        <input name="TotTeacupTemperature" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="TeacupTemperature" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="x0">180</parameter>
+                        <parameter name="dQRel">0.001</parameter>
+                        <parameter name="dQMin">0.001</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFtot" name="TotTeacupTemperature" name_level="xx" parent="DEVS_BASIC_COUPLED_TeacupTemperature">
+                    <inputs />
+                    <outputs>
+                        <output name="TotTeacupTemperature" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">180</parameter>
+                    </parameters>
+                </atomicRef>
+            </components>
+            <internal_connections>
+                <connection component_from="TotTeacupTemperature" component_to="TeacupTemperature" port_from="TotTeacupTemperature" port_to="TotTeacupTemperature" type="in" />
+            </internal_connections>
+            <external_input_connections />
+            <external_output_connections>
+                <connection component_from="TeacupTemperature" port_from="TeacupTemperature" port_to="TeacupTemperature" />
+            </external_output_connections>
+        </coupledRef>
+    </components>
+    <internal_connections />
+    <external_input_connections>
+        <connection component_to="RoomTemperature" port_from="RoomTemperature" port_to="RoomTemperature" />
+        <connection component_to="CharacteristicTime" port_from="CharacteristicTime" port_to="CharacteristicTime" />
+    </external_input_connections>
+    <external_output_connections>
+        <connection component_from="DEVS_BASIC_COUPLED_TeacupTemperature" port_from="TeacupTemperature" port_to="TeacupTemperature" />
+    </external_output_connections>
+</coupledRef>

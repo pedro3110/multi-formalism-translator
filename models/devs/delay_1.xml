@@ -1,0 +1,195 @@
+<coupledRef model="DEVSCoupledComponent" name="DEVS_COUPLED_top" name_level="xx" parent="">
+    <sim_specs>
+        <spec name="instantaneous_flows">false</spec>
+        <spec name="simulation_delay">0.0148515</spec>
+        <spec name="time_units">Months</spec>
+        <spec name="start">0</spec>
+        <spec name="stop">100</spec>
+        <spec name="dt">10</spec>
+    </sim_specs>
+    <inputs>
+        <input name="delayDuration" type="in" />
+        <input name="minVal" type="in" />
+        <input name="maxVal" type="in" />
+        <input name="DELAY_input_delayedInput" type="in" />
+        <input name="UNIFORM_minVal_maxVal_delayedInput" type="in" />
+    </inputs>
+    <outputs>
+        <output name="stock1" type="out" />
+        <output name="input" type="out" />
+        <output name="flow1" type="out" />
+        <output name="delayedInput" type="out" />
+    </outputs>
+    <components>
+        <atomicRef model="DEVSUniform" name="UNIFORM_minVal_maxVal_delayedInput" name_level="xx" parent="DEVS_COUPLED_top">
+            <inputs>
+                <input name="minVal" type="in" />
+                <input name="maxVal" type="in" />
+            </inputs>
+            <outputs>
+                <output name="UNIFORM_minVal_maxVal_delayedInput" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="equation">UNIFORM_minVal_maxVal_delayedInput</parameter>
+                <parameter name="dt">10</parameter>
+                <parameter name="min_val">minVal</parameter>
+                <parameter name="max_val">maxVal</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSAux" name="input" name_level="xx" parent="top">
+            <inputs>
+                <input name="stock1" type="in" />
+            </inputs>
+            <outputs>
+                <output name="input" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="equation">stock1</parameter>
+                <parameter name="non_negative">0</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSDelay" name="DELAY_input_delayedInput" name_level="xx" parent="DEVS_COUPLED_top">
+            <inputs>
+                <input name="input" type="in" />
+                <input name="delayDuration" type="in" />
+            </inputs>
+            <outputs>
+                <output name="DELAY_input_delayedInput" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="input_parameter">input</parameter>
+                <parameter name="delay_parameter">delayDuration</parameter>
+                <parameter name="initial_delay_parameter">None</parameter>
+                <parameter name="equation">input</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSConstant" name="maxVal" name_level="xx" parent="top">
+            <inputs>
+                <input name="maxVal" type="in" />
+            </inputs>
+            <outputs>
+                <output name="maxVal" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">2</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSConstant" name="minVal" name_level="xx" parent="top">
+            <inputs>
+                <input name="minVal" type="in" />
+            </inputs>
+            <outputs>
+                <output name="minVal" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">-2</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSConstant" name="delayDuration" name_level="xx" parent="top">
+            <inputs>
+                <input name="delayDuration" type="in" />
+            </inputs>
+            <outputs>
+                <output name="delayDuration" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="value">10</parameter>
+            </parameters>
+        </atomicRef>
+        <atomicRef model="DEVSAux" name="delayedInput" name_level="xx" parent="top">
+            <inputs>
+                <input name="UNIFORM_minVal_maxVal_delayedInput" type="in" />
+                <input name="DELAY_input_delayedInput" type="in" />
+            </inputs>
+            <outputs>
+                <output name="delayedInput" type="out" />
+            </outputs>
+            <parameters>
+                <parameter name="equation">DELAY_input_delayedInput+UNIFORM_minVal_maxVal_delayedInput</parameter>
+                <parameter name="non_negative">0</parameter>
+            </parameters>
+        </atomicRef>
+        <coupledRef model="DEVSBasicCoupledComponent" name="DEVS_BASIC_COUPLED_stock1" name_level="xx" parent="">
+            <inputs />
+            <outputs>
+                <output name="stock1" type="out" />
+                <output name="flow1" type="out" />
+            </outputs>
+            <components>
+                <atomicRef model="DEVSIntegrator" name="stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="subtract" type="in" />
+                        <input name="increment" type="in" />
+                        <input name="Totstock1" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="stock1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="x0">100</parameter>
+                        <parameter name="dQRel">0.001</parameter>
+                        <parameter name="dQMin">0.001</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFtot" name="Totstock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="flow1_stock1" type="in_plus" />
+                    </inputs>
+                    <outputs>
+                        <output name="Totstock1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">100</parameter>
+                    </parameters>
+                </atomicRef>
+                <atomicRef model="DEVSFplus" name="flow1_stock1" name_level="xx" parent="DEVS_BASIC_COUPLED_stock1">
+                    <inputs>
+                        <input name="stock1" type="in" />
+                    </inputs>
+                    <outputs>
+                        <output name="flow1_stock1" type="out" />
+                        <output name="flow1" type="out" />
+                    </outputs>
+                    <parameters>
+                        <parameter name="equation">50/stock1</parameter>
+                        <parameter name="non_negative">0</parameter>
+                    </parameters>
+                </atomicRef>
+            </components>
+            <internal_connections>
+                <connection component_from="flow1_stock1" component_to="Totstock1" port_from="flow1_stock1" port_to="flow1_stock1" type="in_plus" />
+                <connection component_from="stock1" component_to="flow1_stock1" port_from="stock1" port_to="stock1" type="in" />
+                <connection component_from="Totstock1" component_to="stock1" port_from="Totstock1" port_to="Totstock1" type="in" />
+            </internal_connections>
+            <external_input_connections />
+            <external_output_connections>
+                <connection component_from="stock1" port_from="stock1" port_to="stock1" />
+                <connection component_from="flow1_stock1" port_from="flow1" port_to="flow1" />
+            </external_output_connections>
+        </coupledRef>
+    </components>
+    <internal_connections>
+        <connection component_from="input" component_to="DELAY_input_delayedInput" port_from="input" port_to="input" type="in" />
+        <connection component_from="minVal" component_to="UNIFORM_minVal_maxVal_delayedInput" port_from="minVal" port_to="minVal" type="in" />
+        <connection component_from="delayDuration" component_to="DELAY_input_delayedInput" port_from="delayDuration" port_to="delayDuration" type="in" />
+        <connection component_from="maxVal" component_to="UNIFORM_minVal_maxVal_delayedInput" port_from="maxVal" port_to="maxVal" type="in" />
+        <connection component_from="DELAY_input_delayedInput" component_to="delayedInput" port_from="DELAY_input_delayedInput" port_to="DELAY_input_delayedInput" type="in" />
+        <connection component_from="UNIFORM_minVal_maxVal_delayedInput" component_to="delayedInput" port_from="UNIFORM_minVal_maxVal_delayedInput" port_to="UNIFORM_minVal_maxVal_delayedInput" type="in" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" component_to="input" port_from="stock1" port_to="stock1" type="in" />
+    </internal_connections>
+    <external_input_connections>
+        <connection component_to="DELAY_input_delayedInput" port_from="delayDuration" port_to="delayDuration" />
+        <connection component_to="delayDuration" port_from="delayDuration" port_to="delayDuration" />
+        <connection component_to="UNIFORM_minVal_maxVal_delayedInput" port_from="minVal" port_to="minVal" />
+        <connection component_to="minVal" port_from="minVal" port_to="minVal" />
+        <connection component_to="UNIFORM_minVal_maxVal_delayedInput" port_from="maxVal" port_to="maxVal" />
+        <connection component_to="maxVal" port_from="maxVal" port_to="maxVal" />
+    </external_input_connections>
+    <external_output_connections>
+        <connection component_from="input" port_from="input" port_to="input" />
+        <connection component_from="delayedInput" port_from="delayedInput" port_to="delayedInput" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="stock1" port_to="stock1" />
+        <connection component_from="DEVS_BASIC_COUPLED_stock1" port_from="flow1" port_to="flow1" />
+    </external_output_connections>
+</coupledRef>
