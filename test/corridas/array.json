@@ -1,6 +1,6 @@
 {
   "array0": {
-    "DIR_CDPP": "models/cdpp/array0",
+    "DIR_CDPP": "models/cdpp/array/array0",
     "DIR_XMILE": "models/xmile/array/array0.xmile",
     "DEVSML_CPP_H_DIRECTORY": "models/cdpp/array/array0/atomics/",
     "DEVSML_EVENTS_FILENAME": "models/cdpp/array/array0/events.ev",

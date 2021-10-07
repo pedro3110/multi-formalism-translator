@@ -1,6 +1,6 @@
 {
     "teacup": {
-        "DIR_CDPP": ".models/cdpp/cell/cell-teacup/",
+        "DIR_CDPP": "models/cdpp/cell/cell-teacup/",
         "DIR_XMILE": "models/xmile/teacup.xmile",
         "DEVSML_CPP_H_DIRECTORY": "models/cdpp/cell/cell-teacup/atomics/",
         "DEVSML_EVENTS_FILENAME": "models/cdpp/cell/cell-teacup/events.ev",

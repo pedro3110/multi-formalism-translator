@@ -2,5 +2,7 @@
 *.pyc
 __pycache__
 venv
+models/cdpp
 binaries
-notebooks-dev/data-experiments/*
+notebooks-dev/results-experiments
+notebooks-dev/data-experiments
